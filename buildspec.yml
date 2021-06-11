@@ -1,0 +1,12 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - echo building the docker containers
+      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 620980042578.dkr.ecr.us-east-2.amazonaws.com
+      - docker build -t jayneapp --build-arg DATABASE_URL=$DATABASE_URL --build-arg APP_SECRET=some_val --build-arg NODE_ENV=$NODE_ENV .
+      - docker tag jayneapp:latest 620980042578.dkr.ecr.us-east-2.amazonaws.com/jayneapp:latest
+  post_build:
+    commands:
+      - echo pushing the Docker images...
+      - docker push 620980042578.dkr.ecr.us-east-2.amazonaws.com/jayneapp:latest

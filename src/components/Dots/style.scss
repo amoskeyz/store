@@ -1,0 +1,9 @@
+.dots-container {
+  .dot-button {
+    .dot {
+      &[data-active='active'] {
+        border-color: #fff;
+      }
+    }
+  }
+}

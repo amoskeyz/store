@@ -1,0 +1,36 @@
+.inner_banner_container {
+  // transition: all 0.5s ease;
+
+  .img_container {
+    overflow: hidden;
+  }
+
+  .banner-img {
+    transition: left 1s ease, right 1s ease;
+    &.slide-appear {
+      opacity: 0;
+    }
+
+    &.slide-appear.slide-appear-active {
+      opacity: 1;
+    }
+
+    &.slide-enter {
+      // opacity: 0.4;
+      left: -100%;
+      z-index: 30;
+    }
+
+    &.slide-enter-active,
+    &.slide-enter-done {
+      // opacity: 1;
+      left: 0;
+    }
+
+    &.slide-exit {
+      // left: 100%;
+      // transition: all 1s ease;
+      // opacity: 0;
+    }
+  }
+}

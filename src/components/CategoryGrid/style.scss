@@ -1,0 +1,52 @@
+.col-con {
+  .col-sec {
+    > div {
+      height: 300px;
+    }
+
+    @screen md {
+      height: 1700px;
+
+      > div {
+        height: auto;
+      }
+    }
+
+    @screen lg {
+      height: 700px;
+    }
+
+    @screen xl {
+      height: 850px;
+    }
+  }
+
+  .category--sec {
+    position: relative;
+
+    &:hover {
+      .img-sec {
+        &::after {
+          @apply opacity-100 visible;
+        }
+      }
+
+      
+    }
+
+    .img-sec {
+      &::after {
+        content: '';
+        height: calc(100% - 40px);
+        width: calc(100% - 40px);
+        @apply bg-transparent invisible block left-5 top-5 absolute opacity-0 border border-white transition duration-500;
+      }
+    }
+
+    .cat--contents {
+      bottom: 50px;
+      left: 50px;
+      width: calc(100% - 100px);
+    }
+  }
+}

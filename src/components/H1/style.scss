@@ -1,0 +1,41 @@
+@import '../../styles/media';
+
+.hx_1 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  margin-top: 10px;
+  padding-bottom: 15px;
+
+  .head_all {
+    font-size: 1.5em;
+    font-weight: lighter;
+  }
+
+  .link {
+    font-size: 0.8em;
+
+    &:hover {
+      &::after {
+        color: color(text);
+        transform: translatex(10px);
+      }
+    }
+
+    &::after {
+      transition: 0.2s;
+      text-shadow: none;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'fontawesome';
+      font-weight: normal;
+      font-variant: normal;
+      line-height: 1;
+      text-transform: none;
+      content: '\25b6';
+      color: color(theme);
+      left: 0;
+      font-size: 1.25em;
+      position: relative;
+      margin-left: 18px;
+    }
+  }
+}

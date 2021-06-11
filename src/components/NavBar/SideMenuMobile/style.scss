@@ -1,0 +1,27 @@
+.side-contents {
+  width: 280px;
+
+  .close {
+    height: 58px;
+    left: 4px;
+    width: 60px;
+  }
+}
+
+.side-menu--con {
+  padding: 90px 35px 70px;
+
+  .form-sec {
+    width: 280px;
+  }
+
+  .form-sec input {
+    background: transparent;
+    line-height: 1;
+    padding: 9px 25px;
+  }
+
+  .form-sec input::placeholder {
+    @apply text-txt;
+  }
+}

@@ -1,0 +1,37 @@
+export default [
+  {
+    name: 'fullName',
+    placeHolder: 'Full Name',
+    errorMsg: 'At least 2 valid names',
+    valErrorMsg: 'Please enter full name',
+    required: true,
+    example: 'John doe',
+  },
+  {
+    name: 'email',
+    placeHolder: 'Email',
+    errorMsg: 'Invalid email format',
+    valErrorMsg: 'Please enter email',
+    required: true,
+    attr: { autoComplete: 'new-email' },
+    type: 'email',
+    example: 'johndoe@domain.com',
+  },
+  {
+    placeHolder: 'Password',
+    name: 'password',
+    type: 'password',
+    required: true,
+    valErrorMsg: 'Please enter password',
+    errorMsg: '',
+    attr: { autoComplete: 'current-password' },
+    example: '*********',
+  },
+  {
+    placeHolder: 'Confirm Password',
+    name: 'cpassword',
+    type: 'password',
+    attr: { autoComplete: 'new-password' },
+    example: '*********',
+  },
+];

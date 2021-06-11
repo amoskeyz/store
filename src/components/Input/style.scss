@@ -1,0 +1,245 @@
+%placeholder {
+  top: 12px !important;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+%selected {
+  @apply text-white bg-txt;
+}
+
+.input-div {
+  @apply mb-5 w-full;
+
+  .checkbox-label {
+    &::before {
+      content: '';
+      @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-txt rounded-full invisible;
+    }
+  }
+
+  .check-input {
+    &:checked + label {
+      span {
+        background: white;
+        &::before {
+          content: '';
+          @apply visible;
+        }
+      }
+    }
+  }
+
+  &.select_op {
+    &[disabled] {
+      .currentValue {
+        color: grey;
+
+        &.arrow {
+          &::after {
+            color: grey !important;
+          }
+        }
+      }
+    }
+  }
+
+  .input {
+    .input-type {
+      @apply z-0 bg-transparent w-full text-sm p-2 pt-5 outline-none;
+
+      &:focus {
+        + .el-spans {
+          .place-holder {
+            @extend %placeholder;
+          }
+        }
+      }
+
+      &[type='date'] {
+        + .el-spans {
+          .place-holder {
+            @extend %placeholder;
+          }
+        }
+      }
+
+      &.text-area {
+        + .el-spans {
+          .place-holder {
+            @apply top-8;
+          }
+        }
+      }
+    }
+
+    .place-holder {
+      z-index: -1;
+      @apply absolute left-0 top-1/2 transform -translate-y-1/2 mb-0 ml-2 text-lg text-txt transition-all duration-300;
+      line-height: 1.125rem;
+    }
+
+    .select {
+      .search-input {
+        &::before {
+          @apply absolute bg-white h-2.5;
+          content: '';
+          top: -11px;
+          left: -8px;
+          width: calc(100% + 16px);
+        }
+      }
+
+      .currentValue {
+        outline: none;
+        min-height: 20px;
+
+        &.arrow {
+          &::after {
+            content: '\25BC';
+            position: absolute;
+            @apply text-xs text-txt right-2.5 top-1/2 transform -translate-y-1/2;
+          }
+        }
+
+        p {
+          margin-bottom: 0;
+          min-height: 0.85em;
+        }
+
+        img {
+          margin-left: 10px;
+          width: 10px;
+          height: 15px;
+        }
+      }
+
+      .dropDownButtons {
+        padding: 5px 8px 10px;
+        transition: visibility 0.4s ease, top 0.3s ease, opacity 0.2s ease;
+        transform-origin: top;
+        max-height: 400px;
+        background: white;
+
+        &:hover {
+          overflow-y: scroll;
+        }
+
+        .options {
+          &:hover {
+            @apply bg-txt-lt;
+          }
+        }
+
+        .selected {
+          @extend %selected;
+        }
+
+        &.open-drop {
+          @apply visible opacity-100 mt-10;
+        }
+      }
+    }
+
+    .open-drop {
+      + .el-spans {
+        .place-holder {
+          @extend %placeholder;
+        }
+
+        .grow {
+          z-index: -2;
+          @apply bg-txt w-full;
+        }
+      }
+    }
+
+    .reviel-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+
+      svg {
+        @apply fill-current text-txt w-5 h-5;
+      }
+    }
+  }
+
+  .input-con {
+    //use shadow to see border
+    @apply rounded-sm z-0 relative;
+
+    &.typing,
+    &.valid,
+    &.invalid {
+      .place-holder {
+        @extend %placeholder;
+      }
+    }
+
+    .error {
+      margin-top: 2px;
+      font-size: 0.7em;
+      @apply text-tomato;
+    }
+
+    input:focus {
+      + .el-spans {
+        .grow {
+          @apply bg-txt w-full;
+        }
+      }
+    }
+
+    &.typing {
+      .grow {
+        &::after {
+          @apply bg-txt w-full;
+        }
+      }
+    }
+
+    &.valid {
+      .grow {
+        &::after {
+          @apply bg-theme;
+        }
+      }
+    }
+
+    &.invalid {
+      .grow {
+        &::after {
+          @apply bg-tomato;
+        }
+      }
+    }
+
+    .grow {
+      height: 2px;
+      @apply bg-bl3;
+
+      &::after {
+        content: '';
+        @apply absolute h-full top-0 left-0 w-0;
+      }
+    }
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-webkit-autofill + .el-spans {
+  .place-holder {
+    top: 12px !important;
+    font-size: 0.75rem !important;
+    line-height: 1 !important;
+  }
+}

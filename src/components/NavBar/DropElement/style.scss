@@ -1,0 +1,15 @@
+.sub-menu {
+  .sub-menu-title {
+    &:first-child {
+      padding-left: 0;
+
+      @media only screen and (max-width: 1100px) {
+        padding: 0 2rem;
+      }
+    }
+
+    &:last-child {
+      border-right: unset;
+    }
+  }
+}

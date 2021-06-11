@@ -1,0 +1,23 @@
+.tp-banner {
+  // height: 550px;
+
+  &:hover {
+    button {
+      opacity: 1;
+    }
+  }
+
+  .img-section {
+    padding: 45% 0 0;
+
+    @media only screen and (max-width: 600px) {
+      padding: 100% 0 0;
+    }
+  }
+
+  button {
+    outline: none;
+    transition: 0.3s ease;
+    z-index: 1;
+  }
+}
