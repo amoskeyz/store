@@ -36,7 +36,7 @@ const HomePage = () => {
           <Footer />
         </main>
       )}
-      {(theme === 1  || !theme )&& (
+      { (
         <main className="home-pagfe">
           <div className="contain-top h-96909">
             <NavBar2 />

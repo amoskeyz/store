@@ -9,7 +9,11 @@ const HomePage = ({ func, name, theme }) => {
   const products = useSelector((state) => state.product);
   const store = useSelector((state) => state.store);
   console.log(store, "getallllll");
+
   const data = products[name];
+
+
+  console.log(products, "getallllll");
   const dispatch = useDispatch();
 
   // const router = useRouter();
@@ -36,7 +40,7 @@ const HomePage = ({ func, name, theme }) => {
       : { rows: Object.values(data?.rows || {}) };
   }
 
-  // console.log(dataToUse, data?.rows);
+  console.log(dataToUse, data?.rows);
 
   return <ItemsLayout loading={loading} data={dataToUse} theme={theme} />;
 };

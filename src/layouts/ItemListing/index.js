@@ -46,10 +46,10 @@ const ItemListing = ({
       <div className="product-grid ">
         {data?.rows.map((product, i) => (
           <>
-            {theme === 1 && (
+            {theme === 2 && (
               <ItemCard key={`first_${i}`} setView={setItem} item={product} />
             )}
-            {theme === 2 && (
+            {(theme === 1  || !theme ) && (
               <ItemCard2 key={`first_${i}`} setView={setItem} item={product} />
             )}
           </>
