@@ -4,7 +4,6 @@ import ItemCard from "components/ItemCard";
 import ItemCard2 from "components/ItemCard/theme-2";
 import ItemLoader from "components/Itemloader";
 
-
 const ItemListing = ({
   theme,
   loading,
@@ -14,13 +13,11 @@ const ItemListing = ({
   const [item, setItem] = useState();
   const modalRef = useRef();
 
-
   useEffect(() => {
     if (item) {
       modalRef.current.open();
     }
   }, [item]);
-
 
   if (loading) {
     return (
@@ -42,18 +39,27 @@ const ItemListing = ({
   const imageToUse = item?.images?.length > 0 ? item.images : ["404Image.jpeg"];
 
   return (
-    <div className="main p-0 jkjk">
+    <div className="main p-0 jkjk" style={{minHeight: '62vh'}}>
       <div className="product-grid ">
-        {data?.rows.map((product, i) => (
-          <>
-            {theme === 2 && (
-              <ItemCard key={`first_${i}`} setView={setItem} item={product} />
-            )}
-            {(theme === 1  || !theme ) && (
-              <ItemCard2 key={`first_${i}`} setView={setItem} item={product} />
-            )}
-          </>
-        ))}
+        {data.length > 0 ? (
+          data?.rows.map((product, i) => (
+            <>
+              {theme === 2 && (
+                <ItemCard key={`first_${i}`} setView={setItem} item={product} />
+              )}
+              {(theme === 1 || !theme) && (
+                <ItemCard2
+                  key={`first_${i}`}
+                  setView={setItem}
+                  item={product}
+                />
+              )}
+            </>
+          ))
+        ) : (
+          <div className='h-100 flex flex-grow text-center w-100 justify-center' >No product Available</div>
+          // style={{height: '60vh'}}
+        )}
       </div>
     </div>
   );
