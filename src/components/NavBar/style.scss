@@ -70,7 +70,7 @@ header .social-menu {
 
   .aside--main {
     transition: 0.3s ease;
-    transform: translateX(100%);
+    transform: translateX(100%) !important;
     z-index: 559;
     position: fixed;
     top: 0;
@@ -86,7 +86,7 @@ header .social-menu {
     }
 
     .open {
-      transform: translateX(0);
+      transform: translateX(0) !important;
       &.search {
         visibility: visible;
       }
