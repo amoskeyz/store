@@ -76,7 +76,7 @@ const ProductCard = ({ item, setView, numb }) => {
     // <div className="product-card title--con mb-12 px-3.5 w-full lg:max-w-1/4 md:max-w-1/2">
     // <div classNname='product-grid'>
     // <Link href={`/shop/product/${item.id}`}>
-    <div class="product-grid__cardf flex flex-row items-center fe justify-between mb-12 px-3.5 w-full lg:max-w-2/4 md:max-w-1/2">
+    <div class="product-grid__cardf flex flex-row items-center fe justify-between mb-12 px-3.5 w-full ">
       <Link href={`/${index}/${item.productNameCode}`}>
         {/* <a href="#0"> */}
         <img

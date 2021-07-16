@@ -2,6 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
+
+
+.fe{
+  width: 386px !important
+}
+
+
 .product-tab--con {
   div {
     &.side-mg {
@@ -305,6 +312,7 @@ a {
   transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
   transition: transform 0.3s, -webkit-transform 0.3s;
+  
 }
 
 .main .product-grid__card:hover {
