@@ -14,7 +14,7 @@ const HomePage = () => {
   const [section, setSection] = useState(0);
   const { store } = useSelector((state) => state);
 
-  const theme = 2 || store?.store?.storeDetails?.theme;
+  const theme = store?.store?.storeDetails?.theme;
 
 
   const dataArray = [
@@ -27,7 +27,7 @@ const HomePage = () => {
         <title>Seerbit Store</title>
         <meta name="description" content="" />
       </Head>
-      {theme === 1 && (
+      {theme === 2 && (
         <main className="home-pagfe">
           <NavBar />
           <section className="product-tab main mx-auto mb-20 mt-20 ">
@@ -36,7 +36,7 @@ const HomePage = () => {
           <Footer />
         </main>
       )}
-      {theme === 2 && (
+      {(theme === 1  || !theme )&& (
         <main className="home-pagfe">
           <div className="contain-top h-96909">
             <NavBar2 />

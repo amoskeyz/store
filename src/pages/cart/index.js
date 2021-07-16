@@ -160,7 +160,7 @@ const CartPage = () => {
   };
 
   return (
-    <Layout image={cart} title="Cart" theme={2}>
+    <Layout image={cart} title="Cart" theme={1}>
       {Object.values(items).length > 0 ? (
         <>
           <VItem.Table keys={header} className="">

@@ -36,14 +36,7 @@ const Product = () => {
 
   const success = useSelector((state) => state.success);
 
-
-
-
-
-  console.log(success, 'successssss')
-
-
-  const theme = 2 || store?.store?.storeDetails?.theme;
+  const theme = store?.store?.storeDetails?.theme;
 
   const { indexedProducts } = useSelector((state) => state.product);
   const { items: wishlistItems } = useSelector((state) => state.wishlist);
