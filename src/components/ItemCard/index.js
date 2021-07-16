@@ -48,8 +48,8 @@ const ProductCard = ({ item, setView }) => {
   let onClick;
 
   if (itemIsInCart) {
-    onClick = () => {
-      dispatch(setMenu("cart"));
+    onClick = (type) => {
+      dispatch(setMenu(type));
       dispatch(setOpenPanel(true));
     };
   } else {
@@ -76,7 +76,7 @@ const ProductCard = ({ item, setView }) => {
       <Link href={`/${index}/${item.productNameCode}`}>
         {/* <a href="#0"> */}
         <img
-          class="product-grid__card__image"
+          class="product-grid__card__image cursor-pointer"
           src={imageToUse}
           alt="product image"
           onLoad= {function (){setLoadImage(false)}}
@@ -95,12 +95,12 @@ const ProductCard = ({ item, setView }) => {
         </p>
       </div>
       <div class="product-grid__card__icons">
-        <button aria-label="Add to cart">
+        <button aria-label="Add to cart" onClick={onClick('cart')}>
           <img src={opp} alt="Add to cart" />
         </button>
-        <button aria-label="Add to wishlist">
+        {/* <button aria-label="Add to wishlist">
           <img src={oppp} alt="Add to wishlist" />
-        </button>
+        </button> */}
         {/* <div className="product-grid--cont pt-5 relative">
             <TitleFlip
               small

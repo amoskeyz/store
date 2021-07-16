@@ -1,4 +1,4 @@
-const search = ({ className }) => {
+const search = ({ color }) => {
   return (
     // <svg
     //   stroke="currentColor"
@@ -20,10 +20,10 @@ const search = ({ className }) => {
       className="nnav"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="6.14516" cy="6.19356" r="5.14516" stroke="#182754" />
+      <circle cx="6.14516" cy="6.19356" r="5.14516" stroke={color || "#182754"} />
       <path
         d="M9.77417 10.2258L13 13.4516"
-        stroke="#182754"
+        stroke={color || "#182754"}
         stroke-linecap="round"
         stroke-linejoin="round"
       />

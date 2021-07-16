@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import isMobile from "ismobilejs";
 import Link from "next/link";
 import CartFunc from "hooks/cartfunc";
 import Quantity from "components/QuantitySelector";
@@ -14,13 +15,16 @@ import { addsign, actualPrice, errorhandler } from "helpers";
 import { removeAllFromCart } from "g_actions/cart";
 import { useToasts } from "react-toast-notifications";
 import op from "assets/svg/product-one.svg";
+import { setMenu, setOpenPanel } from "g_actions/menu";
 
 const header = ["PRODUCT", "&nbsp;", "PRICE", "Quantity", "Total", "&nbsp;"];
 
-const SingleCart = ({ data, keys }) => {
+const SingleCart = ({ data, keys, currency }) => {
   const { product } = data;
 
-  console.log(product, data, "0009");
+  const store = useSelector((state) => state?.store);
+
+  console.log(product, data, data.quantity, data.product.amount, "0009");
 
   // const {
   //   itemQuantity,
@@ -30,6 +34,8 @@ const SingleCart = ({ data, keys }) => {
   //   removeCartItem,
   //   loadingRemove,
   // } = CartFunc(product, data);
+
+  console.log(store, "====>");
 
   const imageToUse =
     data.product?.images?.length > 0 ? product.images[0] : ["404Image.jpeg"];
@@ -80,7 +86,11 @@ const SingleCart = ({ data, keys }) => {
           </Link>
         ),
         price: (
-          <Price price={data.product.amount} discount={data.product.discount} />
+          <Price
+            price={data.product.amount}
+            discount={data.product.discount}
+            currency={currency}
+          />
         ),
         quantity: data.quantity,
         // quantity: (
@@ -94,13 +104,12 @@ const SingleCart = ({ data, keys }) => {
         total: (
           <Price
             price={
-              "NGN " +
+              // "NGN " +
               // Number(data.quantity) * Number(product.cost.replace(',', ''))
               // "NGN 150,000"
-              actualPrice(Number(data.quantity) * Number(product.amount))
-              // data.product.cost, data.product.discount) *
-              // itemQuantity
+              Number(data.quantity) * Number(data.product.amount)
             }
+            currency={currency}
           />
         ),
         b2: <VItem.CloseButton />,
@@ -111,11 +120,14 @@ const SingleCart = ({ data, keys }) => {
 
 const CartPage = () => {
   const { items, total } = useSelector((state) => state.cart);
-  const { user } = useSelector((state) => state.auth);
+  const store = useSelector((state) => state?.store);
+  // const { total } = useSelector((state) => state?.cart);
   const dispatch = useDispatch();
   const { addToast } = useToasts();
 
   const [loading, setLoading] = useState(false);
+
+  console.log(store, "ssoo");
 
   const removeAllItems = async () => {
     try {
@@ -128,8 +140,27 @@ const CartPage = () => {
     setLoading(false);
   };
 
+  console.log(isMobile(window.navigator).any, 'mobile')
+
+  const setpresentMenu = (state) => {
+    dispatch(setMenu(state));
+    dispatch(setOpenPanel(true));
+  };
+
+  const handleSideOpen = (e, link) => {
+    e.preventDefault();
+
+    if (isMobile(window.navigator).any) {
+      router.push(`/${link}`);
+
+      return;
+    }
+
+    setpresentMenu(link);
+  };
+
   return (
-    <Layout image={cart} title="Cart">
+    <Layout image={cart} title="Cart" theme={2}>
       {Object.values(items).length > 0 ? (
         <>
           <VItem.Table keys={header} className="">
@@ -144,7 +175,12 @@ const CartPage = () => {
               ]}
             >
               {Object.values(items).map((data, i) => (
-                <SingleCart data={data} i={i} key={`single_ct_${i}`} />
+                <SingleCart
+                  data={data}
+                  i={i}
+                  key={`single_ct_${i}`}
+                  currency={store?.storeDetails?.currency}
+                />
               ))}
             </VItem.Body>
           </VItem.Table>
@@ -163,7 +199,7 @@ const CartPage = () => {
           </div>
           <div className="ml-auto w-full lg:w-2/5">
             <div className="p-10 bg-txt-lt">
-              <h2 className="mb-10 text-4xl text-center">Bag total</h2>
+              {/* <h2 className="mb-10 text-4xl text-center">Bag total</h2> */}
 
               <table className="border-collapse mb-10 w-full">
                 <tbody>
@@ -172,14 +208,20 @@ const CartPage = () => {
                       TOTAL
                     </th>
                     <td className="text-xl font-semibold text-right">
-                      NGN {addsign(150000)}
+                      {/* NGN {addsign(15)} */}
+                      <Price
+                        price={total}
+                        currency={store?.storeDetails?.currency}
+                      />
                     </td>
                   </tr>
                 </tbody>
               </table>
 
               <div className="text-center">
-                <Button link="/checkout">PROCEED TO CHECKOUT</Button>
+                <Button onClick={(e) => handleSideOpen(e, "checkout")} >
+                  PROCEED TO CHECKOUT
+                </Button>
               </div>
             </div>
           </div>

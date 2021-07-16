@@ -15,6 +15,8 @@ const imagePlugin = withOptimizedImages({
   },
 });
 
+
+
 module.exports = withPlugins([
   imagePlugin,
   withSass,

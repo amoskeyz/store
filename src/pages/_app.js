@@ -6,10 +6,6 @@ import { ToastProvider } from "react-toast-notifications";
 import { wrapper } from "../store";
 import { login } from "g_actions/user";
 import { getStore } from "g_actions/store";
-import { getAllProducts } from "g_actions/product";
-import { formatCategories } from "g_actions/presets";
-import { getAllCartItems } from "g_actions/cart";
-import { getAllWishListItems } from "g_actions/wishlist";
 import useFetch from "hooks/useFetch";
 import "../styles/index.scss";
 import "nprogress/nprogress.css";
@@ -38,16 +34,29 @@ const MyApp = ({ Component, pageProps }) => {
 function RenderComp({ Component, pageProps }) {
   const [loading, setLoading] = useState("load");
   const { store } = useSelector((state) => state);
-  // const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
 
   const { index, product } = router.query;
-  // const { meta } = useSelector((state) => state.wishlist);
-  // const [, , fetchWishList] = useFetch(dispatch, !meta, false, 'wislist');
 
   useEffect(() => {
-    if (router.pathname === "/") {
+    if (router.pathname === "/" || router.pathname === "/404") {
+      setLoading("stop");
+      setTimeout(() => {
+        setLoading(null);
+      }, 1000);
+      return;
+    }
+
+    if (router.pathname === "/cart") {
+      setLoading("stop");
+      setTimeout(() => {
+        setLoading(null);
+      }, 1000);
+      return;
+    }
+
+    if (router.pathname === "/checkout") {
       setLoading("stop");
       setTimeout(() => {
         setLoading(null);
@@ -60,7 +69,7 @@ function RenderComp({ Component, pageProps }) {
     if (index) {
       const getCats = async () => {
         setLoading("load");
-        await dispatch(getStore(index));
+        await dispatch(getStore(`${index}`));
         setLoading("stop");
 
         setTimeout(() => {
@@ -88,7 +97,6 @@ function RenderComp({ Component, pageProps }) {
 
   return (
     <>
-      {console.log(loading, "loading")}
       <TopProgressBar state={loading} />
       {loading === "load" ? <Loader /> : <Component {...pageProps} />}
     </>

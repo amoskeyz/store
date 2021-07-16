@@ -39,7 +39,7 @@ const index = ({ images, showThumbs = false, effect = "slide" }) => {
                 {/* // <SwiperSlide className="relative" key={`carousel_el_${3}`}> */}
                 {console.log(el, "el///")}
                 <img
-                  style={{ width: "500px", height: "700px" }}
+                  style={{ width: "500px", height: "600px" }}
                   alt=""
                   className="object-cover w-full h-full"
                   src={`${el}?tr=w-520,h-750`}

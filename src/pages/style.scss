@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
 .product-tab--con {
   div {
     &.side-mg {
@@ -322,7 +326,7 @@ a {
 
 .main .product-grid__card__image {
   width: 100%;
-  height: 39rem;
+  // height: 600px;
   margin-bottom: 1rem;
 }
 
@@ -552,7 +556,7 @@ footer nav ul li {
   justify-content: center;
   align-items: center;
   flex-direction: column !important;
-  div{
+  div {
     margin-top: 10px;
   }
 }
@@ -675,4 +679,95 @@ footer nav ul li {
   height: 40px;
   -webkit-transform: translate(-20px, -20px) scale(0.2) translate(20px, 20px);
   transform: translate(-20px, -20px) scale(0.2) translate(20px, 20px);
+}
+
+.erer {
+  // margin: 0px 230px ;
+  margin-top: 10px;
+}
+
+.contain-top {
+  background: #829698;
+  height: 200px;
+  // height: 87.74px
+}
+
+.ddjd {
+  font-size: 8.4691px;
+  line-height: 12px;
+  text-transform: capitalize;
+
+  /* text gray */
+
+  color: #5c6a79;
+}
+
+.head-prodx {
+  font-weight: bold;
+  font-size: 13.5506px;
+  line-height: 17px;
+  /* identical to box height */
+
+  /* text black */
+
+  color: #1c2a39;
+}
+
+.dix-btx {
+  border: 0.84691px solid #4c3db2;
+  box-sizing: border-box;
+  border-radius: 20px;
+  font-size: 6.77528px;
+  line-height: 8px;
+  /* identical to box height */
+
+  text-transform: uppercase;
+  height: 38.11px;
+  color: #4c3db2;
+  width: 100%;
+}
+
+.fe {
+  width: 386px;
+}
+
+.gdg {
+  font-family: "Open Sans", sans-serif;
+  width: 43%;
+}
+
+.jkjk {
+  padding: 0 !important;
+}
+
+.ekwo {
+  color: #bdbdbd;
+  text-decoration-line: line-through;
+}
+.fd {
+  color: #1c2a39;
+}
+
+.jkjs {
+  box-shadow: 0px 20.3258px 30.4888px rgba(53, 49, 84, 0.28);
+}
+
+.orderx {
+  font-weight: 500;
+  font-size: 50px;
+}
+
+.xxser {
+  font-weight: 600;
+  font-size: 19px;
+}
+
+.userx {
+  font-weight: 500;
+  font-size: 19px;
+}
+
+.bxvfx{
+  font-family: 'Lato', sans-serif !important;
+  width: 745px
 }

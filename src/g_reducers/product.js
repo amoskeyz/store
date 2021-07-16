@@ -9,15 +9,22 @@ export const initialState = {
 const addIndexedProducts = (indexed, arr) => {
   return {
     ...indexed,
-    ...arr.reduce((acc, cur) => ({ ...acc, [cur.productNameCode]: { ...cur } }), {}),
+    ...arr?.reduce(
+      (acc, cur) => ({ ...acc, [cur.productNameCode]: { ...cur } }),
+      {}
+    ),
   };
 };
 
 const updateIndexed = async (indexed, products, el) => {
-  console.log(products, el, products.rows.find(prod => prod.productNameCode === Number(el)))
+  console.log(
+    products,
+    el,
+    products.rows.find((prod) => prod.productNameCode === Number(el))
+  );
   return {
     ...indexed,
-    [el.id]: el//products.rows.find(prod => prod.id === Number(el)),
+    [el.id]: el, //products.rows.find(prod => prod.id === Number(el)),
   };
 };
 
@@ -52,12 +59,14 @@ const properties = (state = initialState, action) => {
     case "GET_ALL_PRODUCT":
       const prevProducts = state.products || [];
 
-      console.log(action.payload, 'actionoporptorptorptorpt')
+      console.log(action.payload, "actionoporptorptorptorpt");
 
       return {
         ...state,
         products: {
-          rows: [...prevProducts, ...action.payload.payload],
+          rows: action.payload.payload
+            ? [...prevProducts, ...action.payload.payload]
+            : [],
           // paginationMeta: action.payload.paginationMeta,
         },
         indexedProducts: addIndexedProducts(

@@ -4,14 +4,14 @@ import WishListIcon from "components/WishListIcon";
 import CartIcon from "components/CartIcon";
 import "./style.scss";
 
-const links = (user, store, total) => {
+const links = (user, store, total, color, className) => {
   const account = user
     ? []
     : [
         {
           title: (
-            <div style={{ color: "#182754" }} className="md:text-sm">
-              {store?.storeDetails?.currency} {total}
+            <div style={{ color: color ||"#182754" }} className="md:text-sm">
+              {store?.storeDetails?.currency || 'NGN'} {total}
             </div>
           ),
           link: "/#",
@@ -22,7 +22,7 @@ const links = (user, store, total) => {
     ...account,
     {
       title: (
-        <Search className="fill-current text-fade w-1 h-5 hidden lg:block" />
+        <Search  color={color} className="fill-current text-fade w-1 h-5 hidden lg:block" />
       ),
       link: "/search",
     },
@@ -31,7 +31,7 @@ const links = (user, store, total) => {
     //   title: <WishListIcon />,
     //   link: '/wishlist',
     // },
-    { title: <CartIcon />, link: "/cart" },
+    { title: <CartIcon  color={color} className={className}/>, link: "/cart" },
   ];
 };
 

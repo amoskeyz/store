@@ -33,7 +33,6 @@ const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
 
   const itemIsInCart = !!cartItems[(item?.productNameCode)];
 
-
   const { currency } = store.storeDetails;
 
   const {
@@ -51,7 +50,6 @@ const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
     setProductOption,
     optionLoading,
   } = CartFunc(item, cartItems[item.id], itemIsInCart);
-
 
   const btnText = itemIsInCart ? "PROCEED TO CHECKOUT" : "Add to basket";
 
@@ -111,7 +109,7 @@ const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
         {item?.productName || ""}
       </h2>
 
-      {single && (
+      {/* {single && (
         <div className="mb-5">
           <ReactStars
             count={5}
@@ -122,9 +120,9 @@ const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
             value={6}
           />
         </div>
-      )}
+      )} */}
 
-      <p className="mb-6 text-txt-t">
+      <p className="mb-6 text-txt-t mt-8">
         {item?.description ||
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "}
       </p>
@@ -138,7 +136,6 @@ const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
         />
       </div>
       <div>
-
         {/* <div className="mb-5  items-center">
           <div className=" border-b  w-full font-medium w-1/4 text-txt pb-2">
             Size
@@ -179,7 +176,6 @@ const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
             loading={load}
             // loading={addToCartLoading}
           />
-
         </div>
       </div>
     </div>

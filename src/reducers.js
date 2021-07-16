@@ -7,6 +7,7 @@ import presets from "./g_reducers/presets";
 import product from "./g_reducers/product";
 import menu from "./g_reducers/menu";
 import store from "./g_reducers/store";
+import success from './g_reducers/success'
 
 const reducers = combineReducers({
   auth,
@@ -17,6 +18,7 @@ const reducers = combineReducers({
   product,
   menu,
   store,
+  success
 });
 
 export default reducers;

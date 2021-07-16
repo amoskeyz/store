@@ -1,36 +1,22 @@
 import Breadcrumbs from 'components/BreadCrumbs';
 import Footer from 'components/Footer';
 import Navbar from 'components/NavBar';
+import NavBar2 from "components/NavBar/theme2";
+import Footer2 from "components/Footer/theme-2";
 import Protected from 'components/Protected';
 
-const PageSection = ({ image, children, title, header, protect }) => {
+const PageSection = ({ image, children, title, header, protect, theme }) => {
   const example = Breadcrumbs();
 
   return (
     <Protected protect={protect}>
       <main className="mt-20 flex flex-col min-h-screen w-full">
-        <Navbar />
+        {theme === 1 && <Navbar />}
+        {theme === 2 && <NavBar2 color/>}
         <div className="flex-grow">
-        <div className="container mx-auto mt-2, mb-2">
+        <div className="container mx-auto mt-8, mb-2">
         <Breadcrumbs /> 
         </div>
-          
-          {/* <d</div> */}
-          {/* <div>
-            <div
-              className="py-20 bg-no-repeat bg-cover bg-left"
-              style={{ backgroundImage: `url(${image})` }}
-            >
-              <div className="container mx-auto">
-                <h1 className=" mb-5 text-txt xl:text-5xl lg:text-4xl md:text-3xl text-2xl">
-                  {title}
-                </h1>
-                {/* <Breadcrumbs /> */}
-              {/* </div> */}
-              {/* {header} */}
-            {/* </div> */}
-          {/* </div> */} 
-
           <div
             className="py12 md:py-6 lg:py-12 container mx-auto"
             style={{ minHeight: '500px' }}
@@ -39,7 +25,8 @@ const PageSection = ({ image, children, title, header, protect }) => {
           </div>
         </div>
 
-        <Footer />
+        {theme === 1 && <Footer />}
+        {theme === 2 && <Footer2 />}
       </main>
     </Protected>
   );

@@ -5,7 +5,7 @@ import { addsign } from "helpers";
 import CartItem from "components/SidePageItem/SPCartItem";
 import { setMenu, setOpenPanel } from "g_actions/menu";
 
-const CartPanel = ({closePanel}) => {
+const CartPanel = ({ closePanel }) => {
   const dispatch = useDispatch();
   const { items, total } = useSelector((state) => state.cart);
   const { presentMenu, openPanel } = useSelector((state) => state.menu);
@@ -18,7 +18,7 @@ const CartPanel = ({closePanel}) => {
   const handleSideOpen = (e, link) => {
     e.preventDefault();
 
-    if (isMobile(window.navigator).any || link === "login-register") {
+    if (link && (isMobile(window.navigator).any || link === "login-register")) {
       router.push(`/${link}`);
 
       return;
@@ -50,24 +50,26 @@ const CartPanel = ({closePanel}) => {
           <span>NGN {addsign(total)}</span>
           {/* <span>NGN {addsign(total)}</span> */}
         </p>
-        <div className="mt-8">
-          <Link href="/cart">
-            <a
-              
-              className="font-medium block p-2.5 mb-4 bg-black border border-black text-center text-black bg-white"
-              onClick={closePanel}
-            >
-              View Bag
-            </a>
-          </Link>
-          <Link href="/checkout">
-            <a 
-            onClick={(e) => handleSideOpen(e, 'checkout')}
-            className="font-medium block p-2.5 mb-4 bg-black text-center text-white">
-              Checkout
-            </a>
-          </Link>
-        </div>
+        {total > 0 && (
+          <div className="mt-8">
+            <Link href="/cart">
+              <a
+                className="font-medium block p-2.5 mb-4 bg-black border border-black text-center text-black bg-white"
+                onClick={closePanel}
+              >
+                View Bag
+              </a>
+            </Link>
+            <Link href="/checkout">
+              <a
+                onClick={(e) => handleSideOpen(e, "checkout")}
+                className="font-medium block p-2.5 mb-4 bg-black text-center text-white"
+              >
+                Checkout
+              </a>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

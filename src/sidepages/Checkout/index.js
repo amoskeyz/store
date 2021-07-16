@@ -1,16 +1,22 @@
 import { useState } from "react";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addsign } from "helpers";
 import CartItem from "components/SidePageItem/SPCartItem";
 import Seerbit from "./seerbit";
 import { playCheckout } from "helpers/checkout";
+import { saveSuccess } from "g_actions/success";
 
-const CartPanel = () => {
+const Checkout = () => {
   const { items, total } = useSelector((state) => state.cart);
   const { store } = useSelector((state) => state.store);
+  const [success, setSuccess] = useState();
+
+  const dispatch = useDispatch();
 
   const { currency } = store.storeDetails;
+
+  const { DeliverRegion } = store;
 
   const [flag, setFlag] = useState(false);
   const [delivery, setDelivery] = useState(0);
@@ -52,6 +58,29 @@ const CartPanel = () => {
     { name: "city", placeholder: "City" },
     { name: "state", placeholder: "State" },
   ];
+
+  const pass = () => {
+    if (
+      values["firstName"].length === 0 ||
+      values["lastName"].length === 0 ||
+      values["email"].length === 0 ||
+      values["phoneNumber"].length === 0 ||
+      values["deliveryAddress"].length === 0 ||
+      values["city"].length === 0 ||
+      values["state"].length === 0 ||
+      values["region"].length === 0
+    )
+      return false;
+    else return true;
+  };
+
+  const callback = function(response, closeModal) {
+    dispatch(saveSuccess({ ...response, isSuccess: true, ...values }));
+
+    setTimeout(() => {
+      closeModal();
+    }, 3000);
+  };
 
   return (
     <div>
@@ -159,9 +188,14 @@ const CartPanel = () => {
               >
                 Shipping Region{" "}
               </option>
-              <option className="text-sm" value={"140000"}>
+              {DeliverRegion.map((data) => (
+                <option className="text-sm" value={data.fee}>
+                  {`${data.name} - ${currency} ${data.fee}`}
+                </option>
+              ))}
+              {/* <option className="text-sm" value={"140000"}>
                 Surulere - NGN 140,000.00
-              </option>
+              </option> */}
             </select>
             <div className="absolute right-2 top-3">
               <svg
@@ -231,47 +265,35 @@ const CartPanel = () => {
           </span>
         </p>
         <div className="mt-8">
-          {/* <Link href="/cart">
-            <a className="font-medium block p-2.5 mb-4 bg-black border border-black text-center text-black bg-white">
-              View Bag
-            </a>
-          </Link> */}
-          {/* <Link href="#"> */}
           <a
             className="font-medium block p-2.5 cursor-pointer mb-4 bg-black text-center text-white rounded"
             onClick={() => {
               setFlag(true);
-              playCheckout({
-                tranref: Math.random()
-                  .toString(36)
-                  .substr(2),
-                country: 'NG',
-                currency: 'NGN',
-                amount: 100,
-                description: "Modeling Seerbit Checkout",
-                full_name: 'Test amos',
-                email: 'inspiron.amos@gmail.com',
-                mobile_no: '07084324266',
-                public_key: 'SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda'
-              });
+              if (pass() && total > 0) {
+                playCheckout({
+                  tranref: Math.random()
+                    .toString(36)
+                    .substr(2),
+                  country: "NG",
+                  currency: "NGN",
+                  amount: total + delivery,
+                  description: "Front Store",
+                  full_name: `${values.firstName} ${values.lastName}`,
+                  email: values.email,
+                  mobile_no: values.phoneNumber,
+                  metaData: JSON.stringify(values),
+                  public_key: "SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",
+                  callback,
+                });
+              }
             }}
           >
             {`Proceed to pay ${currency} ${formatNumber(total + delivery)}`}
-            {/* <Seerbit
-              text={`Proceed to pay ${currency} ${formatNumber(
-                total + delivery
-              )}`}
-              amount={"14,000.00".replace(",", "")}
-              publicKey={"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda"}
-              email={"test.store@mailinator.com"}
-            /> */}
           </a>
-          {/* <Seerbit {/> */}
-          {/* </Link> */}
         </div>
       </div>
     </div>
   );
 };
 
-export default CartPanel;
+export default Checkout;
