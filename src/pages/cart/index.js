@@ -16,107 +16,108 @@ import { removeAllFromCart } from "g_actions/cart";
 import { useToasts } from "react-toast-notifications";
 import op from "assets/svg/product-one.svg";
 import { setMenu, setOpenPanel } from "g_actions/menu";
+import SingleCart from "./singleCart"
 
 const header = ["PRODUCT", "&nbsp;", "PRICE", "Quantity", "Total", "&nbsp;"];
 
-export const SingleCart = ({ data, keys, currency }) => {
-  const { product } = data;
+// const SingleCart = ({ data, keys, currency }) => {
+//   const { product } = data;
 
-  const store = useSelector((state) => state?.store);
+//   const store = useSelector((state) => state?.store);
 
-  console.log(product, data, data.quantity, data.product.amount, "0009");
+//   console.log(product, data, data.quantity, data.product.amount, "0009");
 
-  // const {
-  //   itemQuantity,
-  //   increase,
-  //   decrease,
-  //   loadingQuantity,
-  //   removeCartItem,
-  //   loadingRemove,
-  // } = CartFunc(product, data);
+//   // const {
+//   //   itemQuantity,
+//   //   increase,
+//   //   decrease,
+//   //   loadingQuantity,
+//   //   removeCartItem,
+//   //   loadingRemove,
+//   // } = CartFunc(product, data);
 
-  console.log(store, "====>");
+//   console.log(store, "====>");
 
-  const imageToUse =
-    data.product?.images?.length > 0 ? product.images[0] : ["404Image.jpeg"];
+//   const imageToUse =
+//     data.product?.images?.length > 0 ? product.images[0] : ["404Image.jpeg"];
 
-  return false ? (
-    <VItem.Trow keys={keys} values={loader()} />
-  ) : (
-    <VItem.Trow
-      keys={keys}
-      values={{
-        image: (
-          <Link href={`/single/${data.product.id}`}>
-            <a className="inline-block shadow">
-              <img
-                src={product.productImageUrl} //{`https://ik.imagekit.io/gk81krdud/${imageToUse}?tr=w-600,h-800`}
-                onError={(e) =>
-                  (e.target.src = `https://ik.imagekit.io/gk81krdud/404Image.jpeg?tr=w-600,h-800`)
-                }
-              />
-            </a>
-          </Link>
-        ),
-        description: (
-          <Link href={`/single/${data.product.id}`}>
-            <a>
-              <p className="text-txt-fade my-5 lg:my-0">
-                {data.product.productName}
-              </p>
-              <div>
-                {/* {Object.keys(data.cartOption).map((option, i) => (
-                  <span
-                    className="flex justify-start items-center text-sm text-txt-t"
-                    key={`${data.id}_option_${i}`}
-                  >
-                    <span className="capitalize mr-3">{option} :</span>
-                    {data.cartOption[option].includes('#') ? (
-                      <span
-                        style={{ background: data.cartOption[option] }}
-                        className="w-4 h-4 rounded-full inline-block"
-                      />
-                    ) : (
-                      data.cartOption[option]
-                    )}
-                  </span>
-                ))} */}
-              </div>
-            </a>
-          </Link>
-        ),
-        price: (
-          <Price
-            price={data.product.amount}
-            discount={data.product.discount}
-            currency={currency}
-          />
-        ),
-        quantity: data.quantity,
-        // quantity: (
-        //   <Quantity
-        //     quantity={itemQuantity}
-        //     increase={increase}
-        //     decrease={decrease}
-        //     loadingQuantity={loadingQuantity}
-        //   />
-        // ),
-        total: (
-          <Price
-            price={
-              // "NGN " +
-              // Number(data.quantity) * Number(product.cost.replace(',', ''))
-              // "NGN 150,000"
-              Number(data.quantity) * Number(data.product.amount)
-            }
-            currency={currency}
-          />
-        ),
-        b2: <VItem.CloseButton />,
-      }}
-    />
-  );
-};
+//   return false ? (
+//     <VItem.Trow keys={keys} values={loader()} />
+//   ) : (
+//     <VItem.Trow
+//       keys={keys}
+//       values={{
+//         image: (
+//           <Link href={`/single/${data.product.id}`}>
+//             <a className="inline-block shadow">
+//               <img
+//                 src={product.productImageUrl} //{`https://ik.imagekit.io/gk81krdud/${imageToUse}?tr=w-600,h-800`}
+//                 onError={(e) =>
+//                   (e.target.src = `https://ik.imagekit.io/gk81krdud/404Image.jpeg?tr=w-600,h-800`)
+//                 }
+//               />
+//             </a>
+//           </Link>
+//         ),
+//         description: (
+//           <Link href={`/single/${data.product.id}`}>
+//             <a>
+//               <p className="text-txt-fade my-5 lg:my-0">
+//                 {data.product.productName}
+//               </p>
+//               <div>
+//                 {/* {Object.keys(data.cartOption).map((option, i) => (
+//                   <span
+//                     className="flex justify-start items-center text-sm text-txt-t"
+//                     key={`${data.id}_option_${i}`}
+//                   >
+//                     <span className="capitalize mr-3">{option} :</span>
+//                     {data.cartOption[option].includes('#') ? (
+//                       <span
+//                         style={{ background: data.cartOption[option] }}
+//                         className="w-4 h-4 rounded-full inline-block"
+//                       />
+//                     ) : (
+//                       data.cartOption[option]
+//                     )}
+//                   </span>
+//                 ))} */}
+//               </div>
+//             </a>
+//           </Link>
+//         ),
+//         price: (
+//           <Price
+//             price={data.product.amount}
+//             discount={data.product.discount}
+//             currency={currency}
+//           />
+//         ),
+//         quantity: data.quantity,
+//         // quantity: (
+//         //   <Quantity
+//         //     quantity={itemQuantity}
+//         //     increase={increase}
+//         //     decrease={decrease}
+//         //     loadingQuantity={loadingQuantity}
+//         //   />
+//         // ),
+//         total: (
+//           <Price
+//             price={
+//               // "NGN " +
+//               // Number(data.quantity) * Number(product.cost.replace(',', ''))
+//               // "NGN 150,000"
+//               Number(data.quantity) * Number(data.product.amount)
+//             }
+//             currency={currency}
+//           />
+//         ),
+//         b2: <VItem.CloseButton />,
+//       }}
+//     />
+//   );
+// };
 
 const CartPage = () => {
   const { items, total } = useSelector((state) => state.cart);
@@ -175,15 +176,12 @@ const CartPage = () => {
               ]}
             >
               {Object.values(items).map((data, i) => (
-<>
-               { console.log(data, 'data')}
                 <SingleCart
                   data={data}
                   i={i}
                   key={`single_ct_${i}`}
                   currency={store?.storeDetails?.currency}
                 />
-                </>
               ))}
             </VItem.Body>
           </VItem.Table>
