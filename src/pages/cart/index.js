@@ -19,7 +19,7 @@ import { setMenu, setOpenPanel } from "g_actions/menu";
 
 const header = ["PRODUCT", "&nbsp;", "PRICE", "Quantity", "Total", "&nbsp;"];
 
-const SingleCart = ({ data, keys, currency }) => {
+export const SingleCart = ({ data, keys, currency }) => {
   const { product } = data;
 
   const store = useSelector((state) => state?.store);
