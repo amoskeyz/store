@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastProvider } from "react-toast-notifications";
 import { wrapper } from "../store";
-import { login } from "g_actions/user";
 import { getStore } from "g_actions/store";
 import useFetch from "hooks/useFetch";
 import "../styles/index.scss";
@@ -22,7 +21,6 @@ const MyApp = ({ Component, pageProps }) => {
   console.log(pageProps, Component);
   const dispatch = useDispatch();
 
-  dispatch(login());
 
   return (
     <ToastProvider placement="top-center">

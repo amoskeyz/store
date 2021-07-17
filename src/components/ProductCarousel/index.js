@@ -44,8 +44,8 @@ const index = ({ images, showThumbs = false, effect = "slide" }) => {
                   className="object-cover w-full h-full"
                   src={`${el}?tr=w-520,h-750`}
                   onError={(e) =>
-                    (e.target.src = `https://ik.imagekit.io/gk81krdud/404Image.jpeg?tr=w-600,h-800`)
-                  }
+                    (e.target.src =  'https://ik.imagekit.io/62eig2lzls/no-content_-5NDR0bIN.png?tr=w-600,h-600')
+                  } //`https://ik.imagekit.io/gk81krdud/404Image.jpeg?tr=w-600,h-800`
                 />
               </div>
             ))}
