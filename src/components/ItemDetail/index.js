@@ -81,7 +81,7 @@ const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
         runOnClose();
 
         setLoad(false);
-      }, 1000);
+      }, 500);
     } else {
       dispatch(setMenu("checkout"));
       dispatch(setOpenPanel(true));

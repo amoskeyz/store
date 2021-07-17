@@ -175,12 +175,15 @@ const CartPage = () => {
               ]}
             >
               {Object.values(items).map((data, i) => (
+<>
+               { console.log(data, 'data')}
                 <SingleCart
                   data={data}
                   i={i}
                   key={`single_ct_${i}`}
                   currency={store?.storeDetails?.currency}
                 />
+                </>
               ))}
             </VItem.Body>
           </VItem.Table>
