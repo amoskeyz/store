@@ -123,7 +123,7 @@ const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
       )} */}
 
       <p className="mb-6 text-txt-t mt-8">
-        {item?.description ||
+        {item?.productDescription ||
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "}
       </p>
 

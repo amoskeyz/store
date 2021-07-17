@@ -109,7 +109,7 @@ const ProductCard = ({ item, setView, numb }) => {
             value={4}
           />
         </div>
-        <div className="ddjd">{'dystopian novel written in 1931 by English author Aldous Huxley, and published in 1932. Largely set in...' ||item.description}</div>
+        <div className="ddjd">{item.productDescription  || 'dystopian novel written in 1931 by English author Aldous Huxley, and published in 1932. Largely set in...' ||item.description}</div>
         <div className="text-sm my-2 fd">
           {store?.storeDetails?.currency || 'NGN'} {item.amount}{" "}
           <span className="ekwo">{item.discount}</span>

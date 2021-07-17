@@ -708,6 +708,10 @@ footer nav ul li {
   /* text gray */
 
   color: #5c6a79;
+  display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 3;
+   overflow: hidden;
 }
 
 .head-prodx {
