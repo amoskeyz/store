@@ -1,6 +1,19 @@
+import { useDispatch, useSelector } from "react-redux";
+
 const Footer = () => {
+  const store = useSelector((state) => state.store);
+
+  // console.log(store, 'footer')
+
+  const {
+    facebookLink,
+    instagramLink,
+    twitterLink,
+    youtubeLink,
+  } = store?.store?.storeDetails;
+
   return (
-    <footer className=" bottom-0 w-full" style={{background: "#829698"}}>
+    <footer className=" bottom-0 w-full" style={{ background: "#829698" }}>
       <div class="copyright-text">
         <p>
           SEERBIT <span class="trademark">®</span>
@@ -34,19 +47,33 @@ const Footer = () => {
       <div className="social-menu">
         <ul className="ul">
           <li>
-            <a href="#0">Fb.</a>
+            <a
+              href={`https://www.facebook.com/${facebookLink}`}
+              target="_blank"
+            >
+              Fb.
+            </a>
           </li>
           <li>/</li>
           <li>
-            <a href="#0">Yt.</a>
+            <a href={`https://www.youtube.com/${youtubeLink}`} target="_blank">
+              Yt.
+            </a>
           </li>
           <li>/</li>
           <li>
-            <a href="#0">In.</a>
+            <a
+              href={`https://www.instagram.com/${instagramLink}`}
+              target="_blank"
+            >
+              In.
+            </a>
           </li>
           <li>/</li>
           <li>
-            <a href="#0">Tw.</a>
+            <a href={`https://www.twitter.com/${twitterLink}`} target="_blank">
+              Tw.
+            </a>
           </li>
         </ul>
       </div>

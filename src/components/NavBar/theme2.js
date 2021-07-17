@@ -134,11 +134,11 @@ const NavBar = ({color}) => {
   const handleSideOpen = (e, link) => {
     e.preventDefault();
 
-    if (isMobile(window.navigator).any || link === "login-register") {
-      router.push(`/${link}`);
+    // if (isMobile(window.navigator).any || link === "login-register") {
+    //   router.push(`/${link}`);
 
-      return;
-    }
+    //   return;
+    // }
 
     setpresentMenu(link);
   };
