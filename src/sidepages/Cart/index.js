@@ -52,14 +52,14 @@ const CartPanel = ({ closePanel }) => {
         </p>
         {total > 0 && (
           <div className="mt-8">
-            <Link href="/cart">
+            {/* <Link href="/cart">
               <a
                 className="font-medium block p-2.5 mb-4 bg-black border border-black text-center text-black bg-white"
                 onClick={closePanel}
               >
                 View Bag
               </a>
-            </Link>
+            </Link> */}
             <Link href="/checkout">
               <a
                 onClick={(e) => handleSideOpen(e, "checkout")}
