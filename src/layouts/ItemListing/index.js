@@ -8,7 +8,7 @@ const ItemListing = ({
   theme,
   loading,
   error,
-  data = { rows: [{ productName: "oopop" }, { productName: "oopop" }] },
+  data,
 }) => {
   const [item, setItem] = useState();
   const modalRef = useRef();
@@ -39,9 +39,9 @@ const ItemListing = ({
   const imageToUse = item?.images?.length > 0 ? item.images : ["404Image.jpeg"];
 
   return (
-    <div className="main p-0 jkjk" style={{minHeight: '62vh'}}>
+    <div className="main p-0 jkjk" style={{minHeight: '65vh'}}>
       <div className="product-grid ">
-        {data.length > 0 ? (
+        {data.rows.length > 0 ? (
           data?.rows.map((product, i) => (
             <>
               {theme === 2 && (

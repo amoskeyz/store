@@ -127,7 +127,7 @@ const CartPage = () => {
 
   const [loading, setLoading] = useState(false);
 
-  console.log(store, "ssoo");
+  console.log(store, items, "ssoo");
 
   const removeAllItems = async () => {
     try {

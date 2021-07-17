@@ -16,7 +16,11 @@ const Checkout = () => {
 
   const { currency } = store.storeDetails;
 
-  const { DeliverRegion } = store;
+  const {
+    DeliverRegion,
+    merchant_test_public_key,
+    merchant_live_public_key,
+  } = store;
 
   const [flag, setFlag] = useState(false);
   const [delivery, setDelivery] = useState(0);
@@ -282,7 +286,10 @@ const Checkout = () => {
                   email: values.email,
                   mobile_no: values.phoneNumber,
                   metaData: JSON.stringify(values),
-                  public_key: "SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",
+                  public_key:
+                    merchant_live_public_key?.length > 0
+                      ? merchant_live_public_key
+                      : merchant_test_public_key, //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",
                   callback,
                 });
               }

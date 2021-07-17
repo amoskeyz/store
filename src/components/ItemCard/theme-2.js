@@ -18,6 +18,7 @@ import ReactStars from "react-rating-stars-component";
 
 const ProductCard = ({ item, setView, numb }) => {
   const { items: cartItems } = useSelector((state) => state.cart);
+
   const { store } = useSelector((state) => state.store);
   const { items: wishlistItems } = useSelector((state) => state.wishlist);
   const { isAdmin } = useSelector((state) => state.auth);
@@ -28,6 +29,9 @@ const ProductCard = ({ item, setView, numb }) => {
 
   const itemIsInCart = !!cartItems[item.productNameCode];
   const itemIsInWishList = !!wishlistItems[item.id];
+
+
+  // const {currency} = store?.
 
   const {
     addToWishList,
@@ -107,7 +111,7 @@ const ProductCard = ({ item, setView, numb }) => {
         </div>
         <div className="ddjd">{'dystopian novel written in 1931 by English author Aldous Huxley, and published in 1932. Largely set in...' ||item.description}</div>
         <div className="text-sm my-2 fd">
-          {item.currency} {item.amount}{" "}
+          {store?.storeDetails?.currency || 'NGN'} {item.amount}{" "}
           <span className="ekwo">{item.discount}</span>
         </div>
         <Link href={`/${index}/${item.productNameCode}`}>
