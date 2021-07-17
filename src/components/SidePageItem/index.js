@@ -96,7 +96,7 @@ const Item = ({
               <img
                 src={product.productImageUrl || 'none'}//{`https://ik.imagekit.io/gk81krdud/${imageToUse}?tr=w-600,h-800`}
                 onError={(e) =>
-                  (e.target.src = `https://ik.imagekit.io/gk81krdud/404Image.jpeg?tr=w-600,h-800`)
+                  (e.target.src = `https://ik.imagekit.io/62eig2lzls/no-content_-5NDR0bIN.png?tr=w-600,h-600`)
                 }
               />
             </a>

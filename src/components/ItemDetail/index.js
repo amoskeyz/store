@@ -29,8 +29,6 @@ const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
 
   const { addToast } = useToasts({ PlacementType: "top-center" });
 
-  const { isAdmin } = useSelector((state) => state.auth);
-
   const itemIsInCart = !!cartItems[(item?.productNameCode)];
 
   const { currency } = store.storeDetails;
@@ -96,12 +94,15 @@ const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
     // }
   };
 
-  const handleClick = () => {
-    itemIsInWishList ? removeFromWishList() : addToWishList();
-  };
-
   return (
     <div className="w-full relative">
+      <style jsx>{`
+        @media screen and (max-width: 400px) {
+          h2 {
+            font-size: 20px;
+          }
+        }
+      `}</style>
       <h2
         className="text-6xl text-txt mb-5 text-bold"
         style={{ fontWeight: "500" }}

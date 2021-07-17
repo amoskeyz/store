@@ -160,6 +160,13 @@ const NavBar = ({color}) => {
   return (
     <>
       <header className="absolute w-full z-20" ref={navRef} style={color ? {background: '#829698', marginBottom: '10px'} : {}}>
+      <style jsx>{`
+        @media screen and (max-width: 400px) {
+          .name-2 {
+            font-size: 20px;
+          }
+        }
+      `}</style>
         <nav className="main-nav container flex m-auto z-20 h-20 mlx-20 mfm">
           <div className="nav-collapse flex justify-between relative w-full">
             <div className="social-menu">

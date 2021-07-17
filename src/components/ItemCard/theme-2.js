@@ -30,7 +30,6 @@ const ProductCard = ({ item, setView, numb }) => {
   const itemIsInCart = !!cartItems[item.productNameCode];
   const itemIsInWishList = !!wishlistItems[item.id];
 
-
   // const {currency} = store?.
 
   const {
@@ -83,18 +82,33 @@ const ProductCard = ({ item, setView, numb }) => {
     <div class="product-grid__cardf flex flex-row items-center fe justify-between mb-12 px-3.5 w-full ">
       <Link href={`/${index}/${item.productNameCode}`}>
         {/* <a href="#0"> */}
-        <img
-          class="product-grid__card__imag jkjs"
-          style={{ width: "179.54px", height: "254.07px" }}
-          src={imageToUse}
-          alt="product image"
-          onLoad={function() {
-            setLoadImage(false);
-          }}
-          onError={(e) =>
-            (e.target.src = 'https://ik.imagekit.io/62eig2lzls/no-content_-5NDR0bIN.png?tr=w-600,h-700')
-          }//`https://ik.imagekit.io/gk81krdud/404Image.jpeg?tr=w-600,h-700`
-        />
+        <div>
+          <style jsx>{`
+            .jkjs {
+              width: 179.54px;
+              height: 254.07px;
+            }
+            @media screen and (max-width: 400px) {
+              .jkjs {
+                width:100px;
+                height: 100%;
+              }
+            }
+          `}</style>
+          <img
+            className="product-grid__card__imag jkjs"
+            // style={{ width: "179.54px", height: "254.07px" }}
+            src={imageToUse}
+            alt="product image"
+            onLoad={function() {
+              setLoadImage(false);
+            }}
+            onError={(e) =>
+              (e.target.src =
+                "https://ik.imagekit.io/62eig2lzls/no-content_-5NDR0bIN.png?tr=w-600,h-700")
+            } //`https://ik.imagekit.io/gk81krdud/404Image.jpeg?tr=w-600,h-700`
+          />
+        </div>
         {/* </a> */}
       </Link>
       <div class="product-grid__card__detailsd gdg">
@@ -109,9 +123,13 @@ const ProductCard = ({ item, setView, numb }) => {
             value={4}
           />
         </div>
-        <div className="ddjd">{item.productDescription  || 'dystopian novel written in 1931 by English author Aldous Huxley, and published in 1932. Largely set in...' ||item.description}</div>
+        <div className="ddjd">
+          {item.productDescription ||
+            "dystopian novel written in 1931 by English author Aldous Huxley, and published in 1932. Largely set in..." ||
+            item.description}
+        </div>
         <div className="text-sm my-2 fd">
-          {store?.storeDetails?.currency || 'NGN'} {item.amount}{" "}
+          {store?.storeDetails?.currency || "NGN"} {item.amount}{" "}
           <span className="ekwo">{item.discount}</span>
         </div>
         <Link href={`/${index}/${item.productNameCode}`}>

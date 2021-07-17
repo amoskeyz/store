@@ -16,9 +16,13 @@ const HomePage = () => {
 
   const theme = store?.store?.storeDetails?.theme;
 
-
   const dataArray = [
-    <ItemsSections name="products" func={getAllProducts} key="products" theme={theme}/>,
+    <ItemsSections
+      name="products"
+      func={getAllProducts}
+      key="products"
+      theme={theme}
+    />,
   ];
 
   return (
@@ -36,9 +40,24 @@ const HomePage = () => {
           <Footer />
         </main>
       )}
-      { (
+      {
         <main className="home-pagfe">
-          <div className="contain-top h-96909">
+          <style jsx>{`
+            @media screen and (max-width: 400px) {
+              .pekx-eed {
+                font-size: 20px;
+              }
+
+              .contain-top {
+                height: 130px;
+              }
+
+              .mfm {
+                padding-top: 80px;
+              }
+            }
+          `}</style>
+          <div className="contain-top h-96909 ">
             <NavBar2 />
             <div>
               <div className="main-nav container m-auto z-20 h-20 mlx-20 mfm pt-28">
@@ -66,7 +85,7 @@ const HomePage = () => {
 
           <Footer2 />
         </main>
-      )}
+      }
     </>
   );
 };
