@@ -8,6 +8,7 @@ import { setMenu, setOpenPanel } from "g_actions/menu";
 const CartPanel = ({ closePanel }) => {
   const dispatch = useDispatch();
   const { items, total } = useSelector((state) => state.cart);
+  const { store } = useSelector((state) => state.store);
   const { presentMenu, openPanel } = useSelector((state) => state.menu);
 
   const setpresentMenu = (state) => {
@@ -47,7 +48,9 @@ const CartPanel = ({ closePanel }) => {
         </div>
         <p className="py-2.5 mb-4 mt-7 font-semibold text-txt flex flex-row justify-between border-t border-b border-txt-lt-fd">
           <span>Total (Excl. delivery):</span>
-          <span>NGN {addsign(total)}</span>
+          <span>
+            {`${store?.storeDetails?.currency || "NGN"} ${addsign(total)}`}
+          </span>
           {/* <span>NGN {addsign(total)}</span> */}
         </p>
         {total > 0 && (

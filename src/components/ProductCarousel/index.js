@@ -29,8 +29,8 @@ const index = ({ images, showThumbs = false, effect = "slide" }) => {
           }
         }
         .nm {
-          width: 500px, 
-          height: 600px
+          width: 500px;
+          height: 600px;
         }
         @media screen and (max-width: 1024px) {
           .nm {
