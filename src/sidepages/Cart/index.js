@@ -18,11 +18,11 @@ const CartPanel = ({ closePanel }) => {
   const handleSideOpen = (e, link) => {
     e.preventDefault();
 
-    if (link && (isMobile(window.navigator).any || link === "login-register")) {
-      router.push(`/${link}`);
+    // if (link && (isMobile(window.navigator).any || link === "login-register")) {
+    //   router.push(`/${link}`);
 
-      return;
-    }
+    //   return;
+    // }
 
     setpresentMenu(link);
   };

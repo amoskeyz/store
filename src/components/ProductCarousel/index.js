@@ -21,9 +21,26 @@ const index = ({ images, showThumbs = false, effect = "slide" }) => {
   console.log(images, "=------");
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row ">
+      <style jsx>{`
+        @media screen and (max-width: 1024px) {
+          .kl-xxv {
+            justify-content: center;
+          }
+        }
+        .nm {
+          width: 500px, 
+          height: 600px
+        }
+        @media screen and (max-width: 1024px) {
+          .nm {
+            width: 100%;
+            text-align: center;
+          }
+        }
+      `}</style>
       <div className="w-full relactive prcd">
-        <div className="relative shadowf flex flex-row">
+        <div className="relative shadowf flex flex-row kl-xxv">
           {/* <LightgalleryProvider> */}
           <div>
             {/* <Swiper
@@ -39,12 +56,13 @@ const index = ({ images, showThumbs = false, effect = "slide" }) => {
                 {/* // <SwiperSlide className="relative" key={`carousel_el_${3}`}> */}
                 {console.log(el, "el///")}
                 <img
-                  style={{ width: "500px", height: "600px" }}
+                  // style={{ width: "500px", height: "600px" }}
                   alt=""
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full nm"
                   src={`${el}?tr=w-520,h-750`}
                   onError={(e) =>
-                    (e.target.src =  'https://ik.imagekit.io/62eig2lzls/no-content_-5NDR0bIN.png?tr=w-600,h-600')
+                    (e.target.src =
+                      "https://ik.imagekit.io/62eig2lzls/no-content_-5NDR0bIN.png?tr=w-600,h-600")
                   } //`https://ik.imagekit.io/gk81krdud/404Image.jpeg?tr=w-600,h-800`
                 />
               </div>
