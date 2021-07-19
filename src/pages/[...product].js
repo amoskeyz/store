@@ -58,9 +58,7 @@ const Product = () => {
     }
   }, []);
 
-
   const closePanel = () => {
-
     setMenu("");
     dispatch(setOpenPanel(false));
   };
@@ -156,9 +154,9 @@ const Product = () => {
               <div />
             </div>
           )}
-          {success?.success?.isSuccess  && (
+          {success?.success?.isSuccess && (
             <div className="flex justify-center pt-6">
-              <Success success={success?.success} close={closePanel}/>
+              <Success success={success?.success} close={closePanel} />
             </div>
           )}
         </>
