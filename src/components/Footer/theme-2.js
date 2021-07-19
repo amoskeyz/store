@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-const Footer = () => {
+const Footer = ({ color, background }) => {
   const store = useSelector((state) => state.store);
 
   // console.log(store, 'footer')
@@ -13,7 +13,20 @@ const Footer = () => {
   } = store?.store?.storeDetails;
 
   return (
-    <footer className=" bottom-0 w-full" style={{ background: "#829698" }}>
+    <footer className=" bottom-0 w-full">
+      <style jsx>{`
+        footer {
+          background: ${background ? background : "#829698"};
+          color: ${color ? color : "#ffffff"};
+        }
+        li{
+          color: ${color ? color : "#ffffff"}; 
+        }
+
+        a{
+          color: ${color ? color : "#ffffff"}; 
+        }
+      `}</style>
       <div class="copyright-text">
         <p>
           SEERBIT <span class="trademark">®</span>

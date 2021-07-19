@@ -286,10 +286,10 @@ const Checkout = () => {
                   email: values.email,
                   mobile_no: values.phoneNumber,
                   metaData: JSON.stringify(values),
-                  public_key:
-                    merchant_live_public_key?.length > 0
-                      ? merchant_live_public_key
-                      : merchant_test_public_key, //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",
+                  public_key: 'SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda',
+                    // merchant_live_public_key?.length > 0
+                    //   ? merchant_live_public_key
+                    //   : merchant_test_public_key, //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",,
                   callback,
                 });
               }

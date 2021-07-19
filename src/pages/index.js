@@ -9,7 +9,7 @@ const HomePage = () => {
       <Head>
         <title>Seerbit Store</title>
         <meta name="description" content="" />
-        <script src="https://stg-checkout.seerbitapi.com/api/v2/seerbit.js" />
+        <script src="https://checkout.seerbitapi.com/api/v2/seerbit.js" />
       </Head>
       <div className="okx-ioi">
         <img src={logo} />
