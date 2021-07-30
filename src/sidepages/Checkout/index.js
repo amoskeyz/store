@@ -6,6 +6,10 @@ import CartItem from "components/SidePageItem/SPCartItem";
 import Seerbit from "./seerbit";
 import { playCheckout } from "helpers/checkout";
 import { saveSuccess } from "g_actions/success";
+import { axiosInstance } from 'helpers';
+import Button from "components/submitbtn";
+
+
 
 const Checkout = () => {
   const { items, total } = useSelector((state) => state.cart);
@@ -14,7 +18,7 @@ const Checkout = () => {
 
   const dispatch = useDispatch();
 
-  const { currency } = store.storeDetails;
+  const { currency, storeId } = store.storeDetails;
 
   const {
     DeliverRegion,
@@ -85,6 +89,16 @@ const Checkout = () => {
       closeModal();
     }, 3000);
   };
+
+  const handleDiscountChange = async (e) => {
+
+    e.preventDefault();
+
+    const codeDetails = await axiosInstance.get(`validatecouponcode/${storeId}/${'MR8RJP4G9'}/${null}`)
+
+    console.log(codeDetails)
+
+  }
 
   return (
     <div>
@@ -227,10 +241,12 @@ const Checkout = () => {
             className="cdx h-11 w-full appearance-none block w-full  border rounded py-3 px-4 mb-3  focus:outline-none focus:bg-white focus:border-gray-500"
             type="text"
             placeholder="Discount code"
+            onChange={handleDiscountChange}
           />
-          <a className="font-medium block p-3 m-auto bg-black text-center text-white absolute top-0 w-1/2 right-0 h-full rounded">
+          <Button />
+          {/* <a className="font-medium block p-3 m-auto bg-black text-center text-white absolute top-0 w-1/2 right-0 h-full rounded">
             Apply discount code
-          </a>
+          </a> */}
         </div>
 
         <p className="py-2 mb-1 mt-16 font-semibold text-txt flex flex-row justify-end">

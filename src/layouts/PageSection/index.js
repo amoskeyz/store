@@ -11,8 +11,8 @@ const PageSection = ({ image, children, title, header, protect, theme }) => {
   return (
     <Protected protect={protect}>
       <main className="mt-20 flex flex-col min-h-screen w-full">
-        {theme === 2 && <Navbar />}
-        {(theme === 1  || !theme ) && <NavBar2 color/>}
+        {(theme === 2 || theme === '2') && <Navbar />}
+        {(theme === 1  || !theme || theme === '1') && <NavBar2 color/>}
         <div className="flex-grow">
         <div className="container mx-auto mt-8, mb-2">
         <Breadcrumbs /> 
@@ -25,8 +25,8 @@ const PageSection = ({ image, children, title, header, protect, theme }) => {
           </div>
         </div>
 
-        {theme === 2 && <Footer />}
-        {(theme === 1  || !theme )&& <Footer2 />}
+        {(theme === 2 || theme === '2') && <Footer />}
+        {(theme === 1  || !theme || theme === '1')&& <Footer2 />}
       </main>
     </Protected>
   );
