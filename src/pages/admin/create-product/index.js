@@ -11,7 +11,7 @@ import Input from 'components/InputType';
 import data from 'data/createProduct';
 import SubmitButton from 'components/submitbtn';
 import Button from 'components/Button';
-import AddProductOptions from 'components/AddProductOptions';
+// import AddProductOptions from 'components/AddProductOptions';
 import ChooseImages from 'components/ChooseImages';
 import AddTags from 'components/AddTags';
 import useFetch from 'hooks/useFetch';
@@ -237,11 +237,11 @@ const CreateProduct = () => {
             </div>
           </div>
 
-          <AddProductOptions
+          {/* <AddProductOptions
             options={options}
             setOptions={setOptions}
             quantity={inputTypes.quantity}
-          />
+          /> */}
 
           <AddTags tags={tags} setTags={setTags} />
 

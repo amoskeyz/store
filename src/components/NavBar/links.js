@@ -1,6 +1,6 @@
 import Search from "assets/icons/search";
 import User from "assets/icons/account";
-import WishListIcon from "components/WishListIcon";
+// import WishListIcon from "components/WishListIcon";
 import CartIcon from "components/CartIcon";
 import "./style.scss";
 
