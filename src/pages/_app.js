@@ -92,6 +92,8 @@ function RenderComp({ Component, pageProps }) {
     }
   }, [store, router]);
 
+  console.log(loading, 'load')
+
   return (
     <>
       <TopProgressBar state={loading} />

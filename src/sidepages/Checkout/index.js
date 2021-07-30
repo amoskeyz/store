@@ -15,6 +15,7 @@ const Checkout = () => {
   const { items, total } = useSelector((state) => state.cart);
   const { store } = useSelector((state) => state.store);
   const [success, setSuccess] = useState();
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -243,10 +244,10 @@ const Checkout = () => {
             placeholder="Discount code"
             onChange={handleDiscountChange}
           />
-          <Button />
-          {/* <a className="font-medium block p-3 m-auto bg-black text-center text-white absolute top-0 w-1/2 right-0 h-full rounded">
-            Apply discount code
-          </a> */}
+          {/* <Button /> */}
+          <a className="font-medium block p-3 m-auto bg-black text-center text-white absolute top-0 w-1/2 right-0 h-full rounded">
+            {loading ? 'loading' : 'Apply discount code'}
+          </a>
         </div>
 
         <p className="py-2 mb-1 mt-16 font-semibold text-txt flex flex-row justify-end">
