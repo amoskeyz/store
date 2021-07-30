@@ -28,9 +28,7 @@ const ProductCard = ({ item, setView, numb }) => {
   const [loadImage, setLoadImage] = useState(true);
 
   const itemIsInCart = !!cartItems[item.productNameCode];
-  const itemIsInWishList = !!wishlistItems[item.id];
 
-  // const {currency} = store?.
 
   const {
     addToWishList,
@@ -62,7 +60,6 @@ const ProductCard = ({ item, setView, numb }) => {
     onClick = () => router.push(`/${index}/${item.productNameCode}`);
   }
 
-  console.log(item, "=== hereeeeeeeee----");
 
   const msg = !main_quantity
     ? "Out of Stock"
@@ -70,15 +67,10 @@ const ProductCard = ({ item, setView, numb }) => {
     ? "+ Added to Cart"
     : "+ Select Option";
 
-  // if item is in cart we say remove from cart
-
   const imageToUse =
     item?.productImageUrl?.length > 0 ? item.productImageUrl : "";
 
   return (
-    // <div className="product-card title--con mb-12 px-3.5 w-full lg:max-w-1/4 md:max-w-1/2">
-    // <div classNname='product-grid'>
-    // <Link href={`/shop/product/${item.id}`}>
     <div class="product-grid__cardf flex flex-row items-center fe justify-between mb-12 px-3.5 w-full ">
       <Link href={`/${index}/${item.productNameCode}`}>
         {/* <a href="#0"> */}

@@ -18,7 +18,7 @@ import loaderr from "images/loader.gif";
 // import { setMenu, setOpenPanel } from "g_actions/menu";
 import { addToCart, changeQuantity, removeFromCart } from "g_actions/cart";
 
-const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
+const Itemdetail = ({ item, runOnClose = () => { }, single }) => {
   const dispatch = useDispatch();
   const { items: cartItems } = useSelector((state) => state.cart);
   const { store } = useSelector((state) => state.store);
@@ -51,35 +51,47 @@ const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
 
   const btnText = itemIsInCart ? "PROCEED TO CHECKOUT" : "Add to basket";
 
+
+  console.log(item, '==')
   const submitFunc = async () => {
     if (!itemIsInCart) {
       setLoad(true);
-      await dispatch(
-        addToCart(
-          {
-            cartOption: "S",
-            productId: item.productNameCode,
-            product: item,
-            quantity: itemQuantity,
-            // ...cartDetails,
-          },
-          false,
-          null
-        )
-      );
-      addToast("Added to Bag", {
-        appearance: "success",
-        autoDismiss: true,
-        placement: "top-center",
-      });
-
-      setTimeout(() => {
-        dispatch(setMenu("cart"));
-        dispatch(setOpenPanel(true));
-        runOnClose();
-
+      
+      if (item.quantity <= 0 && item.stockType === 'STOCK') {
+        addToast("Out of stock", {
+          appearance: "error",
+          autoDismiss: true,
+          placement: "top-center",
+        });
         setLoad(false);
-      }, 500);
+      } else {
+        await dispatch(
+          addToCart(
+            {
+              cartOption: "S",
+              productId: item.productNameCode,
+              product: item,
+              quantity: itemQuantity,
+              // ...cartDetails,
+            },
+            false,
+            null
+          )
+        );
+        addToast("Added to Bag", {
+          appearance: "success",
+          autoDismiss: true,
+          placement: "top-center",
+        });
+
+        setTimeout(() => {
+          dispatch(setMenu("cart"));
+          dispatch(setOpenPanel(true));
+          runOnClose();
+
+          setLoad(false);
+        }, 500);
+      }
     } else {
       dispatch(setMenu("checkout"));
       dispatch(setOpenPanel(true));
@@ -175,7 +187,7 @@ const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
             handleSubmit={submitFunc}
             text={btnText}
             loading={load}
-            // loading={addToCartLoading}
+          // loading={addToCartLoading}
           />
         </div>
       </div>

@@ -109,7 +109,14 @@ const CartFunc = (item, cartDetails, itemIsInCart = true) => {
         return;
       }
     }
-    if (itemQuantity + 1 > main_quantity) return;
+    
+    if (itemQuantity + 1 > main_quantity) {
+      addToast("Out of stock", {
+        appearance: "error",
+        autoDismiss: true,
+      });
+      return
+    };
 
     setLoadingQuantity(true);
     const prevQ = itemQuantity;

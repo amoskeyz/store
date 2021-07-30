@@ -92,14 +92,12 @@ const Checkout = () => {
         <h3 className="inner-title capitalize text-txt font-medium pb-1.5  border-txt-lt-fd mb-5">
           Delivery Information
         </h3>
-        {/* {Object.values(items).length === 0 && 'No items found in bag'} */}
       </div>
 
       <div>
         <p className="py-2.5 mb-4 mt-7 font-semibold text-txt flex flex-row justify-between border-txt-lt-fd">
           Shopper Information
         </p>
-        {/* <div className="border h-10 w-full"> */}
         <div className="flex flex-row justify-between">
           {info.map((data) => (
             <div className="w-full mb-3">
@@ -178,7 +176,6 @@ const Checkout = () => {
               }  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
               type="text"
               placeholder="State"
-              // value={values.region}
               onChange={(e) => {
                 setValues({ ...values, region: e.target.value });
                 setDelivery(Number(e.target.value));
@@ -197,9 +194,6 @@ const Checkout = () => {
                   {`${data.name} - ${currency} ${data.fee}`}
                 </option>
               ))}
-              {/* <option className="text-sm" value={"140000"}>
-                Surulere - NGN 140,000.00
-              </option> */}
             </select>
             <div className="absolute right-2 top-3">
               <svg
@@ -223,12 +217,10 @@ const Checkout = () => {
             </p>
           )}
         </div>
-        {/* <input type="text" className="cdx h-11 w-full appearance-none block w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Shipping Region"/> */}
 
         <p className="py-2.5 mb-4 mt-7 font-semibold text-txt flex flex-row justify-between border-txt-lt-fd">
           Discounts
         </p>
-        {/* <div className="border h-10 w-full"> */}
         <div className="relative">
           <input
             type="text"
@@ -241,15 +233,6 @@ const Checkout = () => {
           </a>
         </div>
 
-        {/* </div> */}
-        {/* <div
-          className="overflow-x-hidden overflow-y-scroll"
-          style={{ maxHeight: '330px' }}
-        >
-          {Object.values(items).map((item) => (
-            <CartItem key={item.id} item={item} />
-          ))}
-        </div> */}
         <p className="py-2 mb-1 mt-16 font-semibold text-txt flex flex-row justify-end">
           <span className="pr-10">Sub total (Excl. delivery):</span>
           <span>

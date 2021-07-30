@@ -16,6 +16,9 @@ const HomePage = () => {
   const { store } = useSelector((state) => state);
 
   const theme = store?.store?.storeDetails?.theme;
+  const welcomeMessage = store?.store?.storeDetails?.welcomeMessage
+
+
 
   const dataArray = [
     <ItemsSections
@@ -132,6 +135,7 @@ const HomePage = () => {
                 func={getAllProducts}
                 key="products"
                 theme={theme}
+                welcomeMessage={welcomeMessage}
               />
             </div>
             {/* </main> */}
