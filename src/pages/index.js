@@ -20,10 +20,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-{
-  /* <div className="okx-ioi">
-        <img src={logo}></img>
-        <div>Welcome to Seerbit Store</div>background: #829698;
-      </div> */
-}
