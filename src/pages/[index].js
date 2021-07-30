@@ -44,7 +44,7 @@ const HomePage = () => {
           <Footer />
         </main>
       )}
-      {true && (
+      {(theme === 1  || theme === '1') && (
         <main className="home-pagfe">
           <style jsx>{`
             @media screen and (max-width: 400px) {

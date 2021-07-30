@@ -44,10 +44,10 @@ const ItemListing = ({
         {data.rows.length > 0 ? (
           data?.rows.map((product, i) => (
             <>
-              {theme === 2 && (
+              {(theme === '2' || theme === '2') && (
                 <ItemCard key={`first_${i}`} setView={setItem} item={product} />
               )}
-              {(theme === 1 || !theme) && (
+              {(theme === 1 || !theme || theme === '1') && (
                 <ItemCard2
                   key={`first_${i}`}
                   setView={setItem}
