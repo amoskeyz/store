@@ -56,7 +56,6 @@ const ProductCard = ({ item, setView }) => {
     onClick = () => router.push(`/${index}/${item.productNameCode}`);
   }
 
-  console.log(item, "===");
 
   const msg = !main_quantity
     ? "Out of Stock"

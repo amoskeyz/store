@@ -119,8 +119,6 @@ export const changeQuantity = (item, operation, user) => async (dispatch) => {
   const { quantity, cartOption } = item;
 
 
-  console.log(item, '=-=-=-=-')
-
   const action =
     operation === 'increment' ? 'INCREASE_CART_ITEM' : 'DECREASE_CART_ITEM';
 

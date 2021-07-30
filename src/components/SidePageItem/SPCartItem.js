@@ -2,7 +2,7 @@ import CartFunc from 'hooks/cartfunc';
 import View from './index';
 
 const SPCartItem = ({ item }) => {
-  console.log(item, 'ittt')
+
   const { product } = item;
 
   const {

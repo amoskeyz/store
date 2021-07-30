@@ -18,7 +18,6 @@ const TopProgressBar = dynamic(
 );
 
 const MyApp = ({ Component, pageProps }) => {
-  console.log(pageProps, Component);
   const dispatch = useDispatch();
 
 

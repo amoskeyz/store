@@ -128,7 +128,6 @@ const CartPage = () => {
 
   const [loading, setLoading] = useState(false);
 
-  console.log(store, items, "ssoo");
 
   const removeAllItems = async () => {
     try {
@@ -141,7 +140,6 @@ const CartPage = () => {
     setLoading(false);
   };
 
-  console.log(isMobile(window.navigator).any, 'mobile')
 
   const setpresentMenu = (state) => {
     dispatch(setMenu(state));

@@ -43,7 +43,7 @@ const Checkout = () => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    console.log(e.target.name, e.target.value);
+    // console.log(e.target.name, e.target.value);
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 

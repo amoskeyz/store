@@ -52,11 +52,10 @@ const Itemdetail = ({ item, runOnClose = () => { }, single }) => {
   const btnText = itemIsInCart ? "PROCEED TO CHECKOUT" : "Add to basket";
 
 
-  console.log(item, '==')
   const submitFunc = async () => {
     if (!itemIsInCart) {
       setLoad(true);
-      
+
       if (item.quantity <= 0 && item.stockType === 'STOCK') {
         addToast("Out of stock", {
           appearance: "error",

@@ -17,11 +17,11 @@ const addIndexedProducts = (indexed, arr) => {
 };
 
 const updateIndexed = async (indexed, products, el) => {
-  console.log(
-    products,
-    el,
-    products.rows.find((prod) => prod.productNameCode === Number(el))
-  );
+  // console.log(
+  //   products,
+  //   el,
+  //   products.rows.find((prod) => prod.productNameCode === Number(el))
+  // );
   return {
     ...indexed,
     [el.id]: el, //products.rows.find(prod => prod.id === Number(el)),
@@ -59,7 +59,7 @@ const properties = (state = initialState, action) => {
     case "GET_ALL_PRODUCT":
       const prevProducts = state.products || [];
 
-      console.log(action.payload, "actionoporptorptorptorpt");
+      // console.log(action.payload, "actionoporptorptorptorpt");
 
       return {
         ...state,

@@ -17,30 +17,10 @@ const CartFunc = (item, cartDetails, itemIsInCart = true) => {
   const [addToCartLoading, setaddToCartLoading] = useState(false);
   const [optionLoading, setOptionLoading] = useState(false);
   const [cartOption, setCartOption] = useState();
-  // cartDetails
-  //   ? cartDetails.cartOption
-  //   : JSON.parse(item.options).reduce((acc, cur) => {
-  //       let val = '';
-  //       if (cur.options.length === 1) {
-  //         val = cur.options[0];
-  //       }
 
-  //       return { ...acc, [cur.name.toLowerCase()]: val };
-  //     }, {})
-
-  console.log(item, "STOCK");
 
   const main_quantity = item?.stockType === "NON_STOCK" ? 1000 : item.quantity;
 
-  // const quantityPerSizeObj = JSON.parse(item.options)
-  //   .filter((opt) => opt.name.toLowerCase() === 'size')[0]
-  //   .options.reduce(
-  //     (acc, cur) => ({
-  //       ...acc,
-  //       [cur.split(':')[0]]: cur.split(':')[1],
-  //     }),
-  //     0
-  //   );
 
   const addCartItem = async (edit, prevQ, prevOption) => {
     if (!cartOption.size) {
@@ -96,7 +76,6 @@ const CartFunc = (item, cartDetails, itemIsInCart = true) => {
     try {
       await dispatch(removeFromCart(item.id, cartDetails.id, user));
     } catch (err) {
-      console.log(err);
       errorhandler(addToast, err);
     }
 
@@ -109,7 +88,7 @@ const CartFunc = (item, cartDetails, itemIsInCart = true) => {
         return;
       }
     }
-    
+
     if (itemQuantity + 1 > main_quantity) {
       addToast("Out of stock", {
         appearance: "error",

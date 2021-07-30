@@ -17,7 +17,6 @@ const Item = ({
 }) => {
   const { product } = item;
 
-  console.log(product, 'pll')
 
   const imageToUse =
     product?.images?.length > 0 ? product.images[0] : ['404Image.jpeg'];

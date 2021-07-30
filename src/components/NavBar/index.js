@@ -36,7 +36,6 @@ const NavBar = () => {
     dispatch(setOpenPanel(true));
   };
 
-  console.log(store, 'store')
 
   const isAdmin =
     user?.role === "admin"
@@ -151,7 +150,6 @@ const NavBar = () => {
   };
 
   const closePanel = () => {
-    console.log('frfrfrf=== here')
     setpresentMenu("");
     dispatch(setOpenPanel(false));
   };

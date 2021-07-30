@@ -18,8 +18,6 @@ SwiperCore.use([EffectFade, Navigation, Autoplay, Pagination, Thumbs]);
 const index = ({ images, showThumbs = false, effect = "slide" }) => {
   const [thumbSwiper, setThumbSwiper] = useState(null);
 
-  console.log(images, "=------");
-
   return (
     <div className="flex flex-row ">
       <style jsx>{`
@@ -43,18 +41,10 @@ const index = ({ images, showThumbs = false, effect = "slide" }) => {
         <div className="relative shadowf flex flex-row kl-xxv">
           {/* <LightgalleryProvider> */}
           <div>
-            {/* <Swiper
-          // effect={effect}
-          // navigation
-          // loop
-          // pagination={{ clickable: true }}
-          // id="main"
-          // thumbs={{ swiper: thumbSwiper }}
-        //> */}
+
             {images.map((el, i) => (
               <div>
-                {/* // <SwiperSlide className="relative" key={`carousel_el_${3}`}> */}
-                {console.log(el, "el///")}
+
                 <img
                   // style={{ width: "500px", height: "600px" }}
                   alt=""
@@ -68,8 +58,7 @@ const index = ({ images, showThumbs = false, effect = "slide" }) => {
               </div>
             ))}
           </div>
-          {/* </Swiper> */}
-          {/* </LightgalleryProvider> */}
+
           {showThumbs && (
             <div className="mt-0 ml-4">
               <div>

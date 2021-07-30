@@ -5,7 +5,7 @@ export const getAllProducts = (page) => async (dispatch) => {
     `/loadstoreproducts/${page}`
   );
 
-  console.log(products.data, 'proooo')
+  // console.log(products.data, 'proooo')
 
   dispatch({
     type: 'GET_ALL_PRODUCT',
@@ -65,7 +65,7 @@ export const deleteProduct = (item) => async (dispatch) => {
 
 export const getSingleProduct = (slug) => async (dispatch) => {
   // const res = await axiosInstance.get(`/product/${slug}`);
-  console.log('im here')
+  // console.log('im here')
 
   dispatch({
     type: 'GET_SINGLE_PRODUCT',

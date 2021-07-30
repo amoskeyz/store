@@ -35,7 +35,7 @@ const HomePage = () => {
         <title>Seerbit Store</title>
         <meta name="description" content="" />
       </Head>
-      {theme === 2 && (
+      {(theme === 2  || theme === '2')&& (
         <main className="home-pagfe">
           <NavBar />
           <section className="product-tab main mx-auto mb-20 mt-20 ">

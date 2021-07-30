@@ -33,7 +33,7 @@ const WishListFunc = (item, wishListDetails) => {
         autoDismiss: true,
       });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       errorhandler(addToast, err);
     }
 

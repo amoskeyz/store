@@ -36,7 +36,6 @@ const NavBar = ({color}) => {
     dispatch(setOpenPanel(true));
   };
 
-  console.log(store, 'store')
 
   const isAdmin =
     user?.role === "admin"

@@ -12,7 +12,7 @@ const saveToStorage = (state) => {
 const properties = (state = initialState, action) => {
   let newState;
 
-  console.log(action, 'actionnsssssssssssssss')
+  // console.log(action, 'actionnsssssssssssssss')
 
   switch (action.type) {
     case 'INITIALIZE_CART':

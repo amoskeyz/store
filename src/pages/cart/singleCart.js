@@ -6,13 +6,10 @@ import Price from "components/Price";
 const SingleCart = ({ data, keys, currency }, props) => {
   const { product } = data;
 
-  console.log(props)
 
   const store = useSelector((state) => state?.store);
 
-  console.log(product, data, data.quantity, data.product.amount, "0009", keys);
 
-  console.log(store, "====>");
 
   const imageToUse =
     data.product?.images?.length > 0 ? product.images[0] : ["404Image.jpeg"];
