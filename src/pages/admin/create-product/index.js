@@ -13,7 +13,7 @@ import SubmitButton from 'components/submitbtn';
 import Button from 'components/Button';
 // import AddProductOptions from 'components/AddProductOptions';
 import ChooseImages from 'components/ChooseImages';
-import AddTags from 'components/AddTags';
+// import AddTags from 'components/AddTags';
 import useFetch from 'hooks/useFetch';
 import { getSingleProduct } from 'g_actions/product';
 
@@ -243,7 +243,7 @@ const CreateProduct = () => {
             quantity={inputTypes.quantity}
           /> */}
 
-          <AddTags tags={tags} setTags={setTags} />
+          {/* <AddTags tags={tags} setTags={setTags} /> */}
 
           {productCreated && (
             <ChooseImages
