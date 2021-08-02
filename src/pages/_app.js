@@ -7,15 +7,15 @@ import { wrapper } from "../store";
 import { getStore } from "g_actions/store";
 import useFetch from "hooks/useFetch";
 import "../styles/index.scss";
-import "nprogress/nprogress.css";
+// import "nprogress/nprogress.css";
 import Loader from "components/loader";
 
-const TopProgressBar = dynamic(
-  () => {
-    return import("components/TopProgressBar");
-  },
-  { ssr: false }
-);
+// const TopProgressBar = dynamic(
+//   () => {
+//     return import("components/TopProgressBar");
+//   },
+//   { ssr: false }
+// );
 
 const MyApp = ({ Component, pageProps }) => {
   const dispatch = useDispatch();
@@ -95,7 +95,7 @@ function RenderComp({ Component, pageProps }) {
 
   return (
     <>
-      <TopProgressBar state={loading} />
+      {/* <TopProgressBar state={loading} /> */}
       {loading === "load" ? <Loader /> : <Component {...pageProps} />}
     </>
   );
