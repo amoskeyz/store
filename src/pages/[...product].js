@@ -21,6 +21,7 @@ import { getSingleProduct, getAllProducts } from "g_actions/product";
 import Success from "components/Success";
 import Jimp from "jimp";
 import { setMenu, setOpenPanel } from "g_actions/menu";
+import Error from "components/Error";
 
 import "./style.scss";
 
@@ -34,12 +35,13 @@ const Product = () => {
 
   const store = useSelector((state) => state.store);
 
+  console.log(store, 'store')
+
   const success = useSelector((state) => state.success);
 
   const theme = store?.store?.storeDetails?.theme;
 
   const { indexedProducts } = useSelector((state) => state.product);
-  const { items: wishlistItems } = useSelector((state) => state.wishlist);
   const currentProduct = indexedProducts[product[1]];
   const [loadProduct, , fetchProduct] = useFetch(
     dispatch,
@@ -114,54 +116,61 @@ const Product = () => {
   //   });
 
   return (
-    <Layout image={img} title={currentProduct?.title} theme={theme}>
-      <Head>
-        <title>Seerbit Store || {currentProduct?.productName}</title>
-        <meta
-          name="description"
-          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        />
-        <script src="https://checkout.seerbitapi.com/api/v2/seerbit.js" />
-      </Head>
-      <a />
+    <>
+      {store.store.status !== "failure" && (
+        <Layout image={img} title={currentProduct?.title} theme={theme}>
+          <Head>
+            <title>Seerbit Store || {currentProduct?.productName}</title>
+            <meta
+              name="description"
+              content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            />
+            <script src="https://checkout.seerbitapi.com/api/v2/seerbit.js" />
+          </Head>
+          <a />
 
-      {loadProduct && !currentProduct ? (
-        "...Loading"
-      ) : (
-        <>
-          {!success?.success?.isSuccess && (
-            <div className="flex flex-wrap -mx-3.5 product-card">
-              <div className="lg:max-w-1/2 w-full px-3.5 relative mb-12">
-                <Carousel images={imageToUse} effect="fade" showThumbs />
-              </div>
-              <div className="lg:max-w-1/2 w-full px-3.5">
-                <ItemDetail item={currentProduct} single />
-                <div className="border-t border-txt-lt p-2.5 mt-12">
-                  <table>
-                    <tbody>
-                      {sub_data.map((data, el) => (
-                        <tr key={`sm_el_${el}`}>
-                          <td className="font-medium w-24 md:w-48 text-txt pt-3.5">
-                            {data.name}
-                          </td>
-                          <td className="text-txt pt-3.5">{data.value}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+          {loadProduct && !currentProduct ? (
+            "...Loading"
+          ) : (
+            <>
+              {!success?.success?.isSuccess && (
+                <div className="flex flex-wrap -mx-3.5 product-card">
+                  <div className="lg:max-w-1/2 w-full px-3.5 relative mb-12">
+                    <Carousel images={imageToUse} effect="fade" showThumbs />
+                  </div>
+                  <div className="lg:max-w-1/2 w-full px-3.5">
+                    <ItemDetail item={currentProduct} single />
+                    <div className="border-t border-txt-lt p-2.5 mt-12">
+                      <table>
+                        <tbody>
+                          {sub_data.map((data, el) => (
+                            <tr key={`sm_el_${el}`}>
+                              <td className="font-medium w-24 md:w-48 text-txt pt-3.5">
+                                {data.name}
+                              </td>
+                              <td className="text-txt pt-3.5">{data.value}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div />
                 </div>
-              </div>
-              <div />
-            </div>
+              )}
+              {success?.success?.isSuccess && (
+                <div className="flex justify-center pt-6">
+                  <Success success={success?.success} close={closePanel} />
+                </div>
+              )}
+            </>
           )}
-          {success?.success?.isSuccess && (
-            <div className="flex justify-center pt-6">
-              <Success success={success?.success} close={closePanel} />
-            </div>
-          )}
-        </>
+        </Layout>
       )}
-    </Layout>
+      {
+        store.store.status === "failure" && <Error type='404'/>
+      }
+    </>
   );
 };
 
