@@ -1,11 +1,27 @@
 import { useState, useEffect } from "react";
 import succ from "assets/success.svg";
 import { setMenu, setOpenPanel } from "g_actions/menu";
+import { useSelector, useDispatch } from "react-redux";
+import { useToasts } from "react-toast-notifications";
 import "./style.scss";
 
 const SuccessPage = ({ success, close }) => {
+  const { addToast } = useToasts();
+
+  const { store } = useSelector((state) => state);
+
+  const successMessage = store?.store?.storeDetails?.successResponseMessage;
+
   useEffect(() => {
     close();
+  }, []);
+
+  useEffect(() => {
+    successMessage &&
+      addToast(successMessage, {
+        appearance: "success",
+        autoDismiss: true,
+      });
   }, []);
 
   return (
@@ -14,12 +30,12 @@ const SuccessPage = ({ success, close }) => {
         <style jsx>{`
           .bxvfx {
             width: 745px;
-            font-size: 20px
+            font-size: 16px
           }
           @media screen and (max-width: 750px){
             .bxvfx{
               width: 100%;
-              font-size: 16px;
+              font-size: 14px;
               
             }
 
@@ -31,7 +47,7 @@ const SuccessPage = ({ success, close }) => {
               flex-direction: column;
             }
             .orderx{
-              font-size: 25px;
+              font-size: 20px;
             }
 
           }
@@ -60,14 +76,14 @@ const SuccessPage = ({ success, close }) => {
             </div>
           </div>
         </div>
-        <div>
+        {/* <div>
           <div className="flex w-full justify-between my-8 ">
             <div>PAYMENT METHOD</div>
             <div>
               <div>Mastercard</div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
