@@ -154,46 +154,10 @@ const NavBar = ({ color }) => {
         <nav className="main-nav container flex m-auto z-20 h-20 mlx-20 mfm">
           <div className="nav-collapse flex justify-between relative w-full">
             <div className="social-menu">
-              {/* <Link href="/"> */}
-              {/* <ul className="flex">
-                <li>Follow</li>
-                <li>-</li>
-                <li>
-                  <a href="#">Fb.</a>
-                </li>
-                <li>/</li>
-                <li>
-                  <a href="#">Tw.</a>
-                </li>
-                <li>/</li>
-                <li>
-                  <a href="#">In.</a>
-                </li>
-              </ul> */}
               <div className="name-2">
                 {storeName.charAt(0).toUpperCase() + storeName.slice(1)}
               </div>
-              {/* <a>
-                  <img
-                    src={logo}
-                    alt=""
-                    className="w-full h-full object-contain"
-                  />
-                </a> */}
-              {/* </Link> */}
             </div>
-            {/* 
-            <ul className="nav-contents">
-              <div>
-                {" "}
-                <img
-                  src={logo}
-                  alt=""
-                  className="object-contain"
-                  style={{ width: "150px" }}
-                />
-              </div>
-            </ul> */}
 
             <div className="side flex justify-center items-center">
               <ul className="r-s flex justify-center items-center h-full">
@@ -211,26 +175,6 @@ const NavBar = ({ color }) => {
                   </li>
                 ))}
               </ul>
-
-              {/* <label className="lg:hidden cursor-pointer" htmlFor="input-nav">
-                <Hambuger
-                  width="20px"
-                  height="20px"
-                  className="stroke-current text-txt"
-                />
-              </label> */}
-
-              {/* <input
-                type="checkbox"
-                id="input-nav"
-                value={checked}
-                onChange={() => {
-                  setChecked(!checked);
-                  setpresentMenu("mobile");
-                  setOpenPanel(!openPanel);
-                }}
-                className="hidden"
-              /> */}
             </div>
           </div>
         </nav>
@@ -241,7 +185,6 @@ const NavBar = ({ color }) => {
         }`}
         onClick={closePanel}
       />
-      {/* <div className="overlay opacity-0 w-full h-full fixed top-0 left-0" /> */}
 
       <div
         className={`h-full aside--main pl-16 relative ${
