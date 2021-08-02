@@ -351,12 +351,14 @@ const Checkout = () => {
                     .substr(2),
                   country: "NG",
                   currency: "NGN",
-                  amount: total + delivery,
+                  amount: Number(values.discount)
+                    ? total + delivery - Number(values.discount)
+                    : total + delivery,
                   description: "Front Store",
                   full_name: `${values.firstName} ${values.lastName}`,
                   email: values.email,
                   mobile_no: values.phoneNumber,
-                  metaData: JSON.stringify(values),
+                  metaData: JSON.stringify({ store: { values, items: items } }),
                   public_key: "SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",
                   // merchant_test_public_key?.length > 0
                   //   ? merchant_test_public_key
