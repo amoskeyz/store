@@ -28,6 +28,10 @@ const CartPanel = ({ closePanel }) => {
     setpresentMenu(link);
   };
 
+  console.log(store?.store?.storeDetails?.name)
+
+  console.log(window.location)
+
   return (
     <div>
       <div className="text-txt-fade">
@@ -69,6 +73,15 @@ const CartPanel = ({ closePanel }) => {
                 className="font-medium block p-2.5 mb-4 bg-black text-center text-white"
               >
                 Checkout
+              </a>
+            </Link>
+            <Link href={`/${store?.storeDetails?.name}`}>
+              <a
+                onClick={(e) => dispatch(setOpenPanel(false))}
+                className="font-medium block p-2.5 mb-4 bg-white text-center text-black"
+                style={{border: "1px solid black"}}
+              >
+                Continue Shopping
               </a>
             </Link>
           </div>
