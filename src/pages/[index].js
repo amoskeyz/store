@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import { getNewest, getPopular, getAllProducts } from "g_actions/product";
 import { useSelector } from "react-redux";
@@ -10,11 +10,14 @@ import Button from "components/Button";
 import Footer from "components/Footer";
 import Footer2 from "components/Footer/theme-2";
 import Error from "components/Error";
+import { useToasts } from "react-toast-notifications";
 import "./style.scss";
 
 const HomePage = () => {
   const [section, setSection] = useState(0);
   const { store } = useSelector((state) => state);
+
+  const { addToast } = useToasts();
 
   const theme = store?.store?.storeDetails?.theme;
   const welcomeMessage = store?.store?.storeDetails?.welcomeMessage;
@@ -29,6 +32,14 @@ const HomePage = () => {
       theme={theme}
     />,
   ];
+
+  useEffect(() => {
+    welcomeMessage &&
+      addToast(welcomeMessage, {
+        appearance: "success",
+        autoDismiss: true,
+      });
+  }, []);
 
   return (
     <>
@@ -147,7 +158,7 @@ const HomePage = () => {
           {/* <Footer2 color={"#182754"} background={"#EED6FB"} /> */}
         </main>
       )}
-      {<Error type="404" />}
+      {store.store.status === "failure" && <Error type="404" />}
     </>
   );
 };
