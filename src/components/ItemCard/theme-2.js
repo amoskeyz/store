@@ -73,7 +73,6 @@ const ProductCard = ({ item, setView, numb }) => {
   return (
     <div class="product-grid__cardf flex flex-row items-center fe justify-between mb-12 px-3.5 w-full ">
       <Link href={`/${index}/${item.productNameCode}`}>
-        {/* <a href="#0"> */}
         <div>
           <style jsx>{`
             .jkjs {
@@ -116,9 +115,8 @@ const ProductCard = ({ item, setView, numb }) => {
           />
         </div>
         <div className="ddjd">
-          {item.productDescription ||
-            "dystopian novel written in 1931 by English author Aldous Huxley, and published in 1932. Largely set in..." ||
-            item.description}
+          {item?.productDescription ||
+            item?.description}
         </div>
         <div className="text-sm my-2 fd">
           {store?.storeDetails?.currency || "NGN"} {item.amount}{" "}

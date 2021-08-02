@@ -6,15 +6,23 @@ import CartItem from "components/SidePageItem/SPCartItem";
 import Seerbit from "./seerbit";
 import { playCheckout } from "helpers/checkout";
 import { saveSuccess } from "g_actions/success";
+import { axiosInstance } from "helpers";
+import Button from "components/submitbtn";
+import { useToasts } from "react-toast-notifications";
+import loader from "images/loader.gif";
 
 const Checkout = () => {
   const { items, total } = useSelector((state) => state.cart);
   const { store } = useSelector((state) => state.store);
   const [success, setSuccess] = useState();
+  const [loading, setLoading] = useState(false);
+  const [isDisabled, setDisabled] = useState(false);
 
   const dispatch = useDispatch();
 
-  const { currency } = store.storeDetails;
+  const { addToast } = useToasts();
+
+  const { currency, storeId, redirectUrl } = store.storeDetails;
 
   const {
     DeliverRegion,
@@ -35,6 +43,7 @@ const Checkout = () => {
     state: "",
     region: "",
     coupon: "",
+    discount: "",
   });
 
   function formatNumber(num) {
@@ -84,6 +93,55 @@ const Checkout = () => {
     setTimeout(() => {
       closeModal();
     }, 3000);
+  };
+
+  const handleDiscount = async (e) => {
+    setLoading(true);
+    e.preventDefault();
+
+    if (values.coupon) {
+      const codeDetails = await axiosInstance.get(
+        `validatecouponcode/${storeId}/${values.coupon}/${null}`
+      );
+
+      console.log(codeDetails.data.payload);
+
+      if (codeDetails?.data?.message === "Successful") {
+        const payload = codeDetails?.data?.payload;
+
+        if (payload.couponCode === values.coupon) {
+          if (payload.couponType === "PERCENTAGE") {
+            setValues({
+              ...values,
+              discount: (total * payload.couponValue) / 100,
+            });
+          } else setValues({ ...values, discount: payload.couponValue });
+
+          setDisabled(true);
+          setLoading(false);
+
+          addToast("Discount Added", {
+            appearance: "success",
+            autoDismiss: true,
+          });
+
+          // return;
+        }
+      } else
+        addToast("Invalid Coupon Code", {
+          appearance: "error",
+          autoDismiss: true,
+        });
+    }
+
+    setLoading(false);
+    // addToast("Invalid Coupon Code", {
+    //   appearance: "error",
+    //   autoDismiss: true,
+    // });
+    //MR8RJP4G
+
+    // console.log(codeDetails);
   };
 
   return (
@@ -227,9 +285,26 @@ const Checkout = () => {
             className="cdx h-11 w-full appearance-none block w-full  border rounded py-3 px-4 mb-3  focus:outline-none focus:bg-white focus:border-gray-500"
             type="text"
             placeholder="Discount code"
+            name="coupon"
+            onChange={handleChange}
+            disabled={isDisabled}
           />
-          <a className="font-medium block p-3 m-auto bg-black text-center text-white absolute top-0 w-1/2 right-0 h-full rounded">
-            Apply discount code
+          {/* <Button /> */}
+          <a
+            className="font-medium block p-3 m-auto bg-black text-center text-white absolute top-0 w-1/2 right-0 h-full rounded"
+            onClick={handleDiscount}
+          >
+            {loading ? (
+              <div className="relative w-100 h-5 ml-3">
+                <img
+                  src={loader}
+                  alt="loading"
+                  className="w-10 h-10 object-cover block top-1/2 right-20 transform -translate-y-1/2 absolute"
+                />
+              </div>
+            ) : (
+              "Apply discount code"
+            )}
           </a>
         </div>
 
@@ -239,6 +314,14 @@ const Checkout = () => {
             {currency} {formatNumber(total)}
           </span>
         </p>
+        {values.discount && (
+          <p className="py-2 mb-1 mt-1 font-semibold text-txt flex flex-row justify-end">
+            <span className="pr-10">Discount:</span>
+            <span>
+              {currency} {formatNumber(values.discount)}
+            </span>
+          </p>
+        )}
         <p className="py-2 mb-1 mt-1 font-semibold text-txt flex flex-row justify-end">
           <span className="pr-10"> Shipping Fee:</span>
           <span>
@@ -248,7 +331,12 @@ const Checkout = () => {
         <p className="py-2 mb-1 mt-1 font-semibold text-txt flex flex-row justify-end">
           <span className="pr-10">Total (Incl. delivery):</span>
           <span>
-            {currency} {formatNumber(total + delivery)}
+            {currency}{" "}
+            {formatNumber(
+              Number(values.discount)
+                ? total + delivery - Number(values.discount)
+                : total + delivery
+            )}
           </span>
         </p>
         <div className="mt-8">
@@ -263,22 +351,29 @@ const Checkout = () => {
                     .substr(2),
                   country: "NG",
                   currency: "NGN",
-                  amount: total + delivery,
+                  amount: Number(values.discount)
+                    ? total + delivery - Number(values.discount)
+                    : total + delivery,
                   description: "Front Store",
                   full_name: `${values.firstName} ${values.lastName}`,
                   email: values.email,
                   mobile_no: values.phoneNumber,
-                  metaData: JSON.stringify(values),
-                  public_key: 'SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda',
-                    // merchant_live_public_key?.length > 0
-                    //   ? merchant_live_public_key
-                    //   : merchant_test_public_key, //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",,
+                  metaData: JSON.stringify({ store: { values, items: items } }),
+                  public_key: "SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",
+                  // merchant_test_public_key?.length > 0
+                  //   ? merchant_test_public_key
+                  //   : merchant_live_public_key, //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",,,
                   callback,
+                  callbackurl: redirectUrl || "",
                 });
               }
             }}
           >
-            {`Proceed to pay ${currency} ${formatNumber(total + delivery)}`}
+            {`Proceed to pay ${currency} ${formatNumber(
+              Number(values.discount)
+                ? total + delivery - Number(values.discount)
+                : total + delivery
+            )}`}
           </a>
         </div>
       </div>
