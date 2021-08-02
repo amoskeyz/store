@@ -27,7 +27,7 @@ ENV NODE_ENV=$NODE_ENV
 RUN npm run next-build    
 
 # Invoke the build script to transpile ts code to js
-RUN npm run build
+# RUN npm run build
 
 # Open desired port
 EXPOSE ${PORT}
