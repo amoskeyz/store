@@ -1,0 +1,48 @@
+.title--con {
+  &:hover {
+    .title {
+      p {
+        opacity: 0;
+        transform: translateY(-60%);
+        visibility: hidden;
+      }
+
+      a {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.title {
+  p {
+    font-size: 24px;
+    transform: translateY(0);
+
+    @screen lg {
+      font-size: 34px;
+    }
+  }
+
+  a {
+    color: #d3122a;
+    font-size: 20px;
+    transform: translateY(60%);
+
+    @screen lg {
+      font-size: 22px;
+    }
+  }
+
+  &.small {
+    p {
+      font-size: 17px;
+    }
+
+    a {
+      font-size: 17px;
+    }
+  }
+}
