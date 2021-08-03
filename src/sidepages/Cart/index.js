@@ -44,7 +44,7 @@ const CartPanel = ({ closePanel }) => {
       <div>
         <div
           className="overflow-x-hidden overflow-y-scroll"
-          style={{ maxHeight: "330px" }}
+          style={{ maxHeight: "490px" }}
         >
           {Object.values(items).map((item) => (
             <CartItem key={item.productNameCode} item={item} />
