@@ -104,6 +104,7 @@
     "faker": "^4.1.0",
     "file-loader": "^6.2.0",
     "coveralls": "^3.1.0",
+    
     "autoprefixer": "^9.8.6",
     "jest": "^25.5.4",
     "@babel/cli": "^7.13.10",
