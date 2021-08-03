@@ -155,7 +155,7 @@ const NavBar = ({ color }) => {
           <div className="nav-collapse flex justify-between relative w-full">
             <div className="social-menu">
               <div className="name-2">
-                {storeName.charAt(0).toUpperCase() + storeName.slice(1)}
+                {storeName?.charAt(0)?.toUpperCase() + storeName?.slice(1)}
               </div>
             </div>
 
