@@ -2,7 +2,7 @@ const express = require('express')
 const next = require('next')
 
 const port = 6700
-const app = next({ dev:true })
+const app = next({ dev:false })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
