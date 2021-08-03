@@ -1,0 +1,254 @@
+
+
+  
+  .col-con {
+    .col-sec {
+      > div {
+        height: 300px;
+      }
+  
+      @screen md {
+        height: 1700px;
+  
+        > div {
+          height: auto;
+        }
+      }
+  
+      @screen lg {
+        height: 700px;
+      }
+  
+      @screen xl {
+        height: 850px;
+      }
+    }
+  
+    .category--sec {
+      position: relative;
+  
+      &:hover {
+        .img-sec {
+          &::after {
+            @apply opacity-100 visible;
+          }
+        }
+  
+        
+      }
+  
+      .img-sec {
+        &::after {
+          content: '';
+          height: calc(100% - 40px);
+          width: calc(100% - 40px);
+          @apply bg-transparent invisible block left-5 top-5 absolute opacity-0 border border-white transition duration-500;
+        }
+      }
+  
+      .cat--contents {
+        bottom: 50px;
+        left: 50px;
+        width: calc(100% - 100px);
+      }
+    }
+  }
+  
+
+  .dots-container {
+    .dot-button {
+      .dot {
+        &[data-active='active'] {
+          border-color: #fff;
+        }
+      }
+    }
+  }
+  
+
+  .hx_1 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    margin-top: 10px;
+    padding-bottom: 15px;
+  
+    .head_all {
+      font-size: 1.5em;
+      font-weight: lighter;
+    }
+  
+    .link {
+      font-size: 0.8em;
+  
+      &:hover {
+        &::after {
+          color: color(text);
+          transform: translatex(10px);
+        }
+      }
+  
+      &::after {
+        transition: 0.2s;
+        text-shadow: none;
+        -webkit-font-smoothing: antialiased;
+        font-family: 'fontawesome';
+        font-weight: normal;
+        font-variant: normal;
+        line-height: 1;
+        text-transform: none;
+        content: '\25b6';
+        color: color(theme);
+        left: 0;
+        font-size: 1.25em;
+        position: relative;
+        margin-left: 18px;
+      }
+    }
+  }
+
+  .sub-menu {
+    .sub-menu-title {
+      &:first-child {
+        padding-left: 0;
+  
+        @media only screen and (max-width: 1100px) {
+          padding: 0 2rem;
+        }
+      }
+  
+      &:last-child {
+        border-right: unset;
+      }
+    }
+  }
+
+
+  $width: 2.5em;
+$height: $width/2;
+
+.toggle {
+  .toggle-control {
+    width: $width;
+    height: $height;
+    border-radius: $height;
+    @apply block border-2 border-tertiary transition-all duration-300 bg-tertiary relative;
+
+    &:after {
+      content: '';
+      width: $width/2;
+      height: $height;
+      box-shadow: 0 1px 2px rgba(black, 0.4), 0 3px 2px rgba(black, 0.4);
+      top: -3px;
+      @apply transition-all duration-300 block bg-tomato rounded-full absolute left-0;
+    }
+  }
+
+  input {
+    display: none;
+    &:checked + .toggle-control {
+      @apply border-primary-light bg-primary-light;
+      &:after {
+        left: $width/2;
+        @apply bg-primary;
+      }
+    }
+  }
+}
+
+
+.title--con {
+    &:hover {
+      .title {
+        p {
+          opacity: 0;
+          transform: translateY(-60%);
+          visibility: hidden;
+        }
+  
+        a {
+          opacity: 1;
+          transform: translateY(0);
+          visibility: visible;
+        }
+      }
+    }
+  }
+  
+  .title {
+    p {
+      font-size: 24px;
+      transform: translateY(0);
+  
+      @screen lg {
+        font-size: 34px;
+      }
+    }
+  
+    a {
+      color: #d3122a;
+      font-size: 20px;
+      transform: translateY(60%);
+  
+      @screen lg {
+        font-size: 22px;
+      }
+    }
+  
+    &.small {
+      p {
+        font-size: 17px;
+      }
+  
+      a {
+        font-size: 17px;
+      }
+    }
+  }
+
+  
+  .orderx {
+    font-weight: 500;
+    font-size: 50px;
+  }
+  
+  .xxser {
+    font-weight: 600;
+    font-size: 19px;
+  }
+  
+  .userx {
+    font-weight: 500;
+    font-size: 19px;
+  }
+  
+  .bxvfx{
+    font-family: 'Lato', sans-serif !important;
+    width: 745px
+  }
+  
+  .drop-rev {
+    .drop-open {
+      opacity: 0;
+      position: absolute;
+      transition: 0.3s ease;
+      visibility: hidden;
+      z-index: 100;
+  
+      &.click-type {
+        height: 0;
+        position: static;
+  
+        &.open {
+          height: 100%;
+        }
+      }
+  
+      &.open {
+        opacity: 1;
+        visibility: visible;
+        z-index: 1;
+      }
+    }
+  }
+  
+  
