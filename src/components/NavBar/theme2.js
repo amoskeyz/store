@@ -17,7 +17,7 @@ import Checkout from "sidepages/Checkout";
 import SearchPane from "./search";
 import partiallinks from "./links";
 import { setMenu, setOpenPanel } from "g_actions/menu";
-import "./style.scss";
+// import "./style.scss";
 
 const NavBar = ({ color }) => {
   const navRef = useRef();
