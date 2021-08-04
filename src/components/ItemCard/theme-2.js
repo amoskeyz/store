@@ -105,14 +105,14 @@ const ProductCard = ({ item, setView, numb }) => {
       <div class="product-grid__card__detailsd gdg">
         <div className="head-prodx">{item.productName}</div>
         <div className="mb-3">
-          <ReactStars
+          {/* <ReactStars
             count={5}
             edit={false}
             size={12}
             activeColor="#ffd700"
             isHalf={false}
             value={4}
-          />
+          /> */}
         </div>
         <div className="ddjd">
           {item?.productDescription ||

@@ -140,10 +140,6 @@ export const removeFromCart = (productId, cartId, user) => async (dispatch) => {
 };
 
 export const removeAllFromCart = (user) => async (dispatch) => {
-  if (user) {
-    await axiosInstance.delete('/cart');
-  }
-
   dispatch({
     type: 'REMOVE_ALL_CART_ITEM',
     payload: { user },

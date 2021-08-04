@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import Head from "next/head";
 import { useSelector, useDispatch } from "react-redux";
 import { addsign } from "helpers";
 import CartItem from "components/SidePageItem/SPCartItem";
@@ -146,6 +147,9 @@ const Checkout = () => {
 
   return (
     <div>
+      <Head>
+        <script src="https://stg-checkout.seerbitapi.com/api/v2/seerbit.js" />
+      </Head>
       <div className="text-txt-fade">
         <h3 className="inner-title capitalize text-txt font-medium pb-1.5  border-txt-lt-fd mb-5">
           Delivery Information
@@ -359,12 +363,13 @@ const Checkout = () => {
                   email: values.email,
                   mobile_no: values.phoneNumber,
                   metaData: JSON.stringify({ store: { values, items: items } }),
-                  public_key: "SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",
-                  // merchant_test_public_key?.length > 0
-                  //   ? merchant_test_public_key
-                  //   : merchant_live_public_key, //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",,,
+                  //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",
+                  public_key:
+                    merchant_test_public_key?.length > 0
+                      ? merchant_test_public_key
+                      : merchant_live_public_key, //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",,,
                   callback,
-                  callbackurl: redirectUrl || "",
+                  // callbackurl: redirectUrl || "",
                 });
               }
             }}

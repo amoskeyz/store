@@ -188,7 +188,17 @@ const Itemdetail = ({ item, runOnClose = () => { }, single }) => {
             loading={load}
           // loading={addToCartLoading}
           />
+          
         </div>
+        {/* <Link href={`/${store?.storeDetails?.name}`}>
+              <a
+                // onClick={(e) => dispatch(setOpenPanel(false))}
+                className="font-medium block p-2.5 mb-4 bg-white text-center text-black w-full"
+                style={{border: "1px solid black"}}
+              >
+                Continue Shopping
+              </a>
+            </Link> */}
       </div>
     </div>
   );

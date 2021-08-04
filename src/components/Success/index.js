@@ -2,15 +2,32 @@ import { useState, useEffect } from "react";
 import succ from "assets/success.svg";
 import { setMenu, setOpenPanel } from "g_actions/menu";
 import { useSelector, useDispatch } from "react-redux";
+import { removeAllFromCart } from "g_actions/cart";
 import { useToasts } from "react-toast-notifications";
+import { addsign, actualPrice, errorhandler } from "helpers";
 // import "./style.scss";
 
 const SuccessPage = ({ success, close }) => {
   const { addToast } = useToasts();
 
+  const dispatch = useDispatch();
+
   const { store } = useSelector((state) => state);
 
   const successMessage = store?.store?.storeDetails?.successResponseMessage;
+
+
+  const removeAllItems = async () => {
+    try {
+      // setLoading(true);
+      await dispatch(removeAllFromCart(''));
+    } catch (err) {
+      errorhandler(addToast, err);
+    }
+
+    // setLoading(false);
+  };
+
 
   useEffect(() => {
     close();
@@ -22,7 +39,11 @@ const SuccessPage = ({ success, close }) => {
         appearance: "success",
         autoDismiss: true,
       });
+
+      removeAllItems()
   }, []);
+
+
 
   return (
     <>

@@ -33,13 +33,13 @@ const HomePage = () => {
     />,
   ];
 
-  useEffect(() => {
-    welcomeMessage &&
-      addToast(welcomeMessage, {
-        appearance: "success",
-        autoDismiss: true,
-      });
-  }, []);
+  // useEffect(() => {
+  //   welcomeMessage &&
+  //     addToast(welcomeMessage, {
+  //       appearance: "success",
+  //       autoDismiss: true,
+  //     });
+  // }, []);
 
   return (
     <>
@@ -79,7 +79,14 @@ const HomePage = () => {
               <div>
                 <div className="main-nav container m-auto z-20 h-20 mlx-20 mfm pt-28">
                   <div className="pekx-eed pb-8">
-                    <span className="dis-cer">Discover</span> the best
+                    {welcomeMessage ? (
+                      welcomeMessage
+                    ) : (
+                      <span>
+                        <span className="dis-cer">Discover</span>{" "}
+                        <span>the best</span>
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

@@ -131,13 +131,13 @@ const CartPage = () => {
 
   const removeAllItems = async () => {
     try {
-      setLoading(true);
+      // setLoading(true);
       await dispatch(removeAllFromCart(user));
     } catch (err) {
       errorhandler(addToast, err);
     }
 
-    setLoading(false);
+    // setLoading(false);
   };
 
 
