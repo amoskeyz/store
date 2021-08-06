@@ -14,24 +14,12 @@ import { useToasts } from "react-toast-notifications";
 // import "./style.scss";
 
 const HomePage = () => {
-  const [section, setSection] = useState(0);
   const { store } = useSelector((state) => state);
 
   const { addToast } = useToasts();
 
   const theme = store?.store?.storeDetails?.theme;
   const welcomeMessage = store?.store?.storeDetails?.welcomeMessage;
-
-  console.log(store, "---");
-
-  const dataArray = [
-    <ItemsSections
-      name="products"
-      func={getAllProducts}
-      key="products"
-      theme={theme}
-    />,
-  ];
 
   // useEffect(() => {
   //   welcomeMessage &&
@@ -51,7 +39,12 @@ const HomePage = () => {
         <main className="home-pagfe">
           <NavBar />
           <section className="product-tab main mx-auto mb-20 mt-20 ">
-            {dataArray[section]}
+            <ItemsSections
+              name="products"
+              func={getAllProducts}
+              key="products"
+              theme={theme}
+            />
           </section>
           <Footer />
         </main>

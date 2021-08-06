@@ -47,6 +47,8 @@ const ProductCard = ({ item, setView }) => {
 
   let onClick;
 
+
+
   if (itemIsInCart) {
     onClick = (type) => {
       dispatch(setMenu(type));
@@ -94,7 +96,7 @@ const ProductCard = ({ item, setView }) => {
         </p>
       </div>
       <div class="product-grid__card__icons">
-        <button aria-label="Add to cart" onClick={onClick('cart')}>
+        <button aria-label="Add to cart" onClick={() => onClick('cart')}>
           <img src={opp} alt="Add to cart" />
         </button>
         {/* <button aria-label="Add to wishlist">
