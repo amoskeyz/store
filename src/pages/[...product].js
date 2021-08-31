@@ -54,7 +54,7 @@ const Product = () => {
     if (loadProduct) {
       fetchProduct(async () =>
         dispatch(
-          getAllProducts(`${store.store?.storeDetails?.storeId}?size=6&page=0`)
+          getAllProducts(`${store.store?.storeDetails?.storeId}?size=100&page=0`)
         )
       );
     }

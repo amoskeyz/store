@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import { getNewest, getPopular, getAllProducts } from "g_actions/product";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import NavBar from "components/NavBar";
 import NavBar2 from "components/NavBar/theme2";
 import NavBar3 from "components/NavBar/theme3";
@@ -9,17 +9,28 @@ import ItemsSections from "sidepages/Products";
 import Button from "components/Button";
 import Footer from "components/Footer";
 import Footer2 from "components/Footer/theme-2";
+import { saveSuccess } from "g_actions/success";
 import Error from "components/Error";
 import { useToasts } from "react-toast-notifications";
 // import "./style.scss";
 
-const HomePage = () => {
+const HomePage = (props) => {
+  console.log(props)
   const { store } = useSelector((state) => state);
 
   const { addToast } = useToasts();
 
+  const dispatch = useDispatch();
+
   const theme = store?.store?.storeDetails?.theme;
   const welcomeMessage = store?.store?.storeDetails?.welcomeMessage;
+
+  useEffect(() => {
+    dispatch(saveSuccess(false))
+    if(props.products){
+      dispatch(getAllProducts(props.products))
+    }
+  },[])
 
   // useEffect(() => {
   //   welcomeMessage &&
@@ -50,7 +61,7 @@ const HomePage = () => {
         </main>
       )}
       {store.store.status !== "failure" &&
-        (theme === 1 || theme === "1" || !theme) && (
+        (theme === 'themeFarm2') && (
           <main className="home-pagfe">
             <style jsx>{`
               @media screen and (max-width: 400px) {
@@ -162,13 +173,5 @@ const HomePage = () => {
     </>
   );
 };
-
-// export const getServerSideProps = wrapper.getServerSideProps(
-//   ({ store, req, res, ...etc }) => {
-//     return {
-//       props: { pre: store.getState().presets },
-//     };
-//   }
-// );
 
 export default HomePage;

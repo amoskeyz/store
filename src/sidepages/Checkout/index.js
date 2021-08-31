@@ -129,7 +129,7 @@ const Checkout = () => {
           // return;
         }
       } else
-        addToast("Invalid Coupon Code", {
+        addToast("Invalid Discount Code", {
           appearance: "error",
           autoDismiss: true,
         });

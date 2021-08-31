@@ -47,7 +47,7 @@ const ItemListing = ({
               {(theme === '2' || theme === '2') && (
                 <ItemCard key={`first_${i}`} setView={setItem} item={product} />
               )}
-              {(theme === 1 || !theme || theme === '1') && (
+              {(theme === 1 || !theme || theme === '1' || theme === 'themeFarm2') && (
                 <ItemCard2
                   key={`first_${i}`}
                   setView={setItem}

@@ -18,7 +18,7 @@ import loaderr from "images/loader.gif";
 // import { setMenu, setOpenPanel } from "g_actions/menu";
 import { addToCart, changeQuantity, removeFromCart } from "g_actions/cart";
 
-const Itemdetail = ({ item, runOnClose = () => { }, single }) => {
+const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
   const dispatch = useDispatch();
   const { items: cartItems } = useSelector((state) => state.cart);
   const { store } = useSelector((state) => state.store);
@@ -51,12 +51,11 @@ const Itemdetail = ({ item, runOnClose = () => { }, single }) => {
 
   const btnText = itemIsInCart ? "PROCEED TO CHECKOUT" : "Add to basket";
 
-
   const submitFunc = async () => {
     if (!itemIsInCart) {
       setLoad(true);
 
-      if (item.quantity <= 0 && item.stockType === 'STOCK') {
+      if (item.quantity <= 0 && item.stockType === "STOCK") {
         addToast("Out of stock", {
           appearance: "error",
           autoDismiss: true,
@@ -166,6 +165,12 @@ const Itemdetail = ({ item, runOnClose = () => { }, single }) => {
           </div>
         </div> */}
 
+        {item.quantity <= 0 && item.stockType === "STOCK" && (
+          <div className="mb-4" style={{ color: "red" }}>
+            Out of stock
+          </div>
+        )}
+
         <div className="mb-5 fl items-center">
           <div className=" border-b  w-full font-medium w-1/4 text-txt pb-2">
             Quantity
@@ -186,9 +191,8 @@ const Itemdetail = ({ item, runOnClose = () => { }, single }) => {
             handleSubmit={submitFunc}
             text={btnText}
             loading={load}
-          // loading={addToCartLoading}
+            // loading={addToCartLoading}
           />
-          
         </div>
         {/* <Link href={`/${store?.storeDetails?.name}`}>
               <a

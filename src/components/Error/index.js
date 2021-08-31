@@ -8,7 +8,7 @@ import ErrorLogo from "../../assets/err.png";
 const Error = ({ type }) => {
   return (
     <div className="notx-fndx">
-      <img src={Logo} className="loog" />
+      {/* <img src={Logo} className="loog" /> */}
 
       <div className="err">
         {type === "404" && (
@@ -19,7 +19,7 @@ const Error = ({ type }) => {
         )}
         {type === "err" && (
           <div className="img-err">
-            <div className="kaxx-dxw">Unable to load Store</div>
+            <div className="kaxx-dxw">Network Error</div>
             <img src={ErrorLogo} className="lo-err" />
           </div>
         )}
@@ -35,10 +35,10 @@ const Error = ({ type }) => {
           {type === "err" ? "Reload Page" : "seerbit.com"}
         </button>
       </div>
-      <div className="foot">
+      {/* <div className="foot">
         <div>Powered By</div>
         <img src={Logo} />
-      </div>
+      </div> */}
     </div>
   );
 };
