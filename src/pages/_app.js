@@ -50,29 +50,29 @@ function RenderComp({ Component, pageProps }) {
 
       saveServerStore();
     }
-    // if (router.pathname === "/" || router.pathname === "/404") {
-    //   setLoading("stop");
-    //   setTimeout(() => {
-    //     setLoading(null);
-    //   }, 1000);
-    //   return;
-    // }
+    if (router.pathname === "/" || router.pathname === "/404") {
+      setLoading("stop");
+      setTimeout(() => {
+        setLoading(null);
+      }, 1000);
+      return;
+    }
 
-    // if (router.pathname === "/cart") {
-    //   setLoading("stop");
-    //   setTimeout(() => {
-    //     setLoading(null);
-    //   }, 1000);
-    //   return;
-    // }
+    if (router.pathname === "/cart") {
+      setLoading("stop");
+      setTimeout(() => {
+        setLoading(null);
+      }, 1000);
+      return;
+    }
 
-    // if (router.pathname === "/checkout") {
-    //   setLoading("stop");
-    //   setTimeout(() => {
-    //     setLoading(null);
-    //   }, 1000);
-    //   return;
-    // }
+    if (router.pathname === "/checkout") {
+      setLoading("stop");
+      setTimeout(() => {
+        setLoading(null);
+      }, 1000);
+      return;
+    }
 
     if (store.store) return;
 
@@ -131,13 +131,14 @@ function RenderComp({ Component, pageProps }) {
   );
 }
 
-MyApp.getInitialProps = async ({ ctx: { req, res, asPath, err } }) => {
-  console.log(typeof window, err);
-  if (typeof window === "undefined") {
+MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
+  console.log(typeof window, err, query);
+  const { index, product } = query;
+  if (typeof window === "undefined" && asPath !== '/') {
     try {
       console.log("i am here");
 
-      const store = await axiosInstance.get(`/loadstoredetails${asPath}`);
+      const store = await axiosInstance.get(`/loadstoredetails${index || product[0]}`);
       const storeId = store.data?.store?.storeDetails?.storeId;
       // console.log(storeId, store, 'id')
       let products;
@@ -151,7 +152,7 @@ MyApp.getInitialProps = async ({ ctx: { req, res, asPath, err } }) => {
       return {
         pageProps: {
           store: store.data || "err",
-          product: "dfdlfjndjfndkfdkhfkd",
+          products,
         },
       };
     } catch (error) {
