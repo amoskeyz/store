@@ -19,7 +19,7 @@ const HomePage = ({ func, name, theme }) => {
 
   useEffect(() => {
     !store?.store?.storeDetails && Router.push('/404')
-    if (loading) {
+    if (loading && !products) {
       store?.store?.storeDetails &&
         fetch(() =>
           func(`${store.store?.storeDetails?.storeId}?size=100&page=0`)
@@ -37,7 +37,7 @@ const HomePage = ({ func, name, theme }) => {
   }
 
 
-  return <ItemsLayout loading={loading} data={dataToUse} theme={theme} />;
+  return <ItemsLayout loading={!products ? loading : false} data={dataToUse} theme={theme} />;
 };
 
 export default HomePage;

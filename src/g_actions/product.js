@@ -9,7 +9,7 @@ export const getAllProducts = (productx) => async (dispatch) => {
     products = productx;
   }
 
-  // console.log(products.data, 'proooo')
+  console.log(productx.data, 'proooo')
 
   dispatch({
     type: "GET_ALL_PRODUCT",

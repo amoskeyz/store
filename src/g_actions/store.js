@@ -1,6 +1,7 @@
 import { axiosInstance } from "helpers";
 
 export const getStore = (storex) => async (dispatch) => {
+  console.log(storex, 'storex')
   let store;
   if (typeof storex === "string") {
     store = await axiosInstance

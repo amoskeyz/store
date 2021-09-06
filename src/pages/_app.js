@@ -22,7 +22,7 @@ import Error from "components/Error";
 const MyApp = ({ Component, pageProps }) => {
   const dispatch = useDispatch();
 
-  console.log(pageProps);
+  // console.log(pageProps);
 
   return (
     <ToastProvider placement="top-center">
@@ -38,7 +38,7 @@ function RenderComp({ Component, pageProps }) {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  console.log(pageProps, "--");
+  // console.log(pageProps, "--");
 
   const { index, product } = router.query;
 
@@ -46,10 +46,14 @@ function RenderComp({ Component, pageProps }) {
     if (pageProps?.store) {
       const saveServerStore = async () => {
         await dispatch(getStore(pageProps.store));
+        setLoading("stop");
       };
 
       saveServerStore();
     }
+  }, []);
+
+  useEffect(() => {
     if (router.pathname === "/" || router.pathname === "/404") {
       setLoading("stop");
       setTimeout(() => {
@@ -79,33 +83,33 @@ function RenderComp({ Component, pageProps }) {
     console.log(product);
 
     if (!pageProps?.store && !pageProps?.errorCode && !pageProps?.products) {
-      if (index) {
-        const getStoreDetails = async () => {
-          setLoading("load");
-          await dispatch(getStore(`${index}`));
-          setLoading("stop");
+      // if (index) {
+      //   const getStoreDetails = async () => {
+      //     setLoading("load");
+      //     await dispatch(getStore(`${index}`));
+      //     setLoading("stop");
 
-          setTimeout(() => {
-            setLoading(null);
-          }, 1000);
-        };
+      //     setTimeout(() => {
+      //       setLoading(null);
+      //     }, 1000);
+      //   };
 
-        getStoreDetails();
-      }
+      //   getStoreDetails();
+      // }
 
-      if (product) {
-        const getProduct = async () => {
-          setLoading("load");
-          await dispatch(getStore(product[0]));
-          setLoading("stop");
+      // if (product) {
+      //   const getProduct = async () => {
+      //     setLoading("load");
+      //     await dispatch(getStore(product[0]));
+      //     setLoading("stop");
 
-          setTimeout(() => {
-            setLoading(null);
-          }, 1000);
-        };
+      //     setTimeout(() => {
+      //       setLoading(null);
+      //     }, 1000);
+      //   };
 
-        getProduct();
-      }
+      //   getProduct();
+      // }
     }
   }, [store, router]);
 
@@ -125,44 +129,54 @@ function RenderComp({ Component, pageProps }) {
           <Component {...pageProps} />
         )
       ) : (
-        <Error type="err" />
+        <>uiu</>
       )}
     </>
   );
 }
 
 MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
-  console.log(typeof window, err, query);
+  console.log(typeof window, err, query, "here");
+  let products;
   const { index, product } = query;
-  if (typeof window === "undefined" && asPath !== '/') {
+  if (typeof window === "undefined" && asPath !== "/") {
     try {
-      console.log("i am here");
-
-      const store = await axiosInstance.get(`/loadstoredetails${index || product[0]}`);
-      const storeId = store.data?.store?.storeDetails?.storeId;
-      // console.log(storeId, store, 'id')
-      let products;
+      const store = await axiosInstance.get(
+        `/loadstoredetails/${index || product[0]}`
+      );
+      const storeId = store.data?.storeDetails?.storeId;
+      console.log(storeId, store?.data, "id");
 
       if (storeId) {
         products = await axiosInstance.get(
           `/loadstoreproducts/${storeId}?size=100&page=0`
         );
-        console.log(products);
+        console.log(products?.data);
       }
       return {
         pageProps: {
-          store: store.data || "err",
-          products,
+          store: store?.data || "err",
+          products: products?.data,
         },
       };
     } catch (error) {
-      // console.log(error, "error");
-      const errorCode = error.response.status;
-      return {
-        pageProps: {
-          errorCode,
-        },
-      };
+      if (error.response) {
+        console.log(error.response, "error");
+        const errorCode = error?.response?.status;
+        return {
+          pageProps: {
+            errorCode,
+          },
+        };
+      } else {
+        console.log(error, "error");
+        const errorCode = error.code;
+        return {
+          pageProps: {
+            errorCode,
+          },
+        };
+      }
     }
   }
   return {};
