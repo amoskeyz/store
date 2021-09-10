@@ -297,6 +297,20 @@ a {
   align-items: center;
 }
 
+
+.main .product-grid__cardf {
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  
+}
+
+.main .product-grid__cardf:hover {
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
+}
+
 .main .product-grid__card {
   width: 100%;
   display: -webkit-box;

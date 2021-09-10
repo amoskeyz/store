@@ -83,19 +83,19 @@ function RenderComp({ Component, pageProps }) {
     console.log(product);
 
     if (!pageProps?.store && !pageProps?.errorCode && !pageProps?.products) {
-      // if (index) {
-      //   const getStoreDetails = async () => {
-      //     setLoading("load");
-      //     await dispatch(getStore(`${index}`));
-      //     setLoading("stop");
+      if (index) {
+        const getStoreDetails = async () => {
+          setLoading("load");
+          await dispatch(getStore(`${index}`));
+          setLoading("stop");
 
-      //     setTimeout(() => {
-      //       setLoading(null);
-      //     }, 1000);
-      //   };
+          setTimeout(() => {
+            setLoading(null);
+          }, 1000);
+        };
 
-      //   getStoreDetails();
-      // }
+        getStoreDetails();
+      }
 
       // if (product) {
       //   const getProduct = async () => {
@@ -114,7 +114,8 @@ function RenderComp({ Component, pageProps }) {
   }, [store, router]);
 
   useEffect(() => {
-    if (store.store === "error" || pageProps?.errorCode) {
+    console.log(store, 'soioioi')
+    if (store.store === "error" || pageProps?.errorCode || pageProps?.store?.storeDetails?.status === 'INACTIVE') {
       setError(true);
     }
   }, [store]);
@@ -129,7 +130,7 @@ function RenderComp({ Component, pageProps }) {
           <Component {...pageProps} />
         )
       ) : (
-        <>uiu</>
+        <Error type="err" active={pageProps?.store?.storeDetails?.status} name={pageProps?.store?.storeDetails?.name}/>
       )}
     </>
   );
@@ -151,14 +152,22 @@ MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
         products = await axiosInstance.get(
           `/loadstoreproducts/${storeId}?size=100&page=0`
         );
-        console.log(products?.data);
+        // console.log(products.data);
       }
-      return {
-        pageProps: {
-          store: store?.data || "err",
-          products: products?.data,
-        },
-      };
+
+      // if (store?.data.storeDetails.status === "INACTIVE") {
+      //   return {
+      //     pageProps: {
+      //       errorCode : '',
+      //     },
+      //   };
+      // } else
+        return {
+          pageProps: {
+            store: store?.data || "err",
+            products: products.data,
+          },
+        };
     } catch (error) {
       if (error.response) {
         console.log(error.response, "error");

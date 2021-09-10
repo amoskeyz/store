@@ -59,13 +59,15 @@ const properties = (state = initialState, action) => {
     case "GET_ALL_PRODUCT":
       const prevProducts = state.products || [];
 
+      console.log(prevProducts, 'prev');
+
       // console.log(action.payload, "actionoporptorptorptorpt");
 
       return {
         ...state,
         products: {
           rows: action.payload.payload
-            ? [...prevProducts, ...action.payload.payload]
+            ? [...(typeof prevProducts === 'object' ?  prevProducts : []), ...action.payload.payload]
             : [],
           // paginationMeta: action.payload.paginationMeta,
         },

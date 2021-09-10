@@ -39,7 +39,7 @@ const ItemListing = ({
   const imageToUse = item?.images?.length > 0 ? item.images : ["404Image.jpeg"];
 
   return (
-    <div className="main p-0 jkjk" style={{minHeight: '65vh'}}>
+    <div className="main p-0 jkjk" style={{minHeight: 'calc(100vh - 18em)'}}>
       <div className="product-grid ">
         {data.rows.length > 0 ? (
           data?.rows.map((product, i) => (

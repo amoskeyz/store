@@ -19,6 +19,8 @@ const SuccessPage = ({ success, close }) => {
   const successMessage = store?.store?.storeDetails?.successResponseMessage;
 
 
+  console.log(store, 'success', store?.store?.storeDetails)
+
   const removeAllItems = async () => {
     try {
       // setLoading(true);
@@ -116,7 +118,7 @@ const SuccessPage = ({ success, close }) => {
             // loading={load}
           // loading={addToCartLoading}
           /> */}
-          <Link href={`/${store?.storeDetails?.name}`}>
+          <Link href={`/${store?.store?.storeDetails?.name}`}>
               <a
                 // onClick={(e) => dispatch(setOpenPanel(false))}
                 className="font-medium block p-2.5 mb-4 bg-black text-center text-white"

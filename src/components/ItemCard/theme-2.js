@@ -87,7 +87,7 @@ const ProductCard = ({ item, setView, numb }) => {
             }
           `}</style>
           <img
-            className="product-grid__card__imag jkjs"
+            className="product-grid__card__imag jkjs cursor-pointer"
             // style={{ width: "179.54px", height: "254.07px" }}
             src={imageToUse}
             alt="product image"

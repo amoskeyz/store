@@ -49,7 +49,7 @@ const HomePage = (props) => {
       {store.store.status !== "failure" && (theme === 2 || theme === "2") && (
         <main className="home-pagfe">
           <NavBar />
-          <section className="product-tab main mx-auto mb-20 mt-20 ">
+          <section className="product-tab main mx-auto mb-20 mt-28 " >
             <ItemsSections
               name="products"
               func={getAllProducts}
@@ -61,7 +61,7 @@ const HomePage = (props) => {
         </main>
       )}
       {store.store.status !== "failure" &&
-        (theme === 'themeFarm2') && (
+        (theme === 'themeFarm2' || theme === '1' || theme === 1) && (
           <main className="home-pagfe">
             <style jsx>{`
               @media screen and (max-width: 400px) {
