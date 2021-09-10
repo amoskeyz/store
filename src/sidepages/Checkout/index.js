@@ -147,7 +147,7 @@ const Checkout = () => {
   return (
     <div>
       <Head>
-        <script src="http://localhost:3000/api/v2/test.js" />
+        <script src="https://stg-checkout.seerbitapi.com" />
       </Head>
       <div className="text-txt-fade">
         <h3 className="inner-title capitalize text-txt font-medium pb-1.5  border-txt-lt-fd mb-5">
