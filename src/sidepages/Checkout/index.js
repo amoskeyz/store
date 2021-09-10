@@ -364,7 +364,7 @@ const Checkout = () => {
                   full_name: `${values.firstName} ${values.lastName}`,
                   email: values.email,
                   mobile_no: values.phoneNumber,
-                  metaData: JSON.stringify({ store: { values, items: items } }),
+                  metaData: JSON.stringify({ order: { values, order: items } }),
                   //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",
                   public_key:
                     test_public_key?.length > 0

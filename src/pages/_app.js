@@ -97,19 +97,19 @@ function RenderComp({ Component, pageProps }) {
         getStoreDetails();
       }
 
-      // if (product) {
-      //   const getProduct = async () => {
-      //     setLoading("load");
-      //     await dispatch(getStore(product[0]));
-      //     setLoading("stop");
+      if (product) {
+        const getProduct = async () => {
+          setLoading("load");
+          await dispatch(getStore(product[0]));
+          setLoading("stop");
 
-      //     setTimeout(() => {
-      //       setLoading(null);
-      //     }, 1000);
-      //   };
+          setTimeout(() => {
+            setLoading(null);
+          }, 1000);
+        };
 
-      //   getProduct();
-      // }
+        getProduct();
+      }
     }
   }, [store, router]);
 
@@ -152,7 +152,7 @@ MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
         products = await axiosInstance.get(
           `/loadstoreproducts/${storeId}?size=100&page=0`
         );
-        // console.log(products.data);
+        console.log(products.data);
       }
 
       // if (store?.data.storeDetails.status === "INACTIVE") {
@@ -162,6 +162,7 @@ MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
       //     },
       //   };
       // } else
+      console.log()
         return {
           pageProps: {
             store: store?.data || "err",
