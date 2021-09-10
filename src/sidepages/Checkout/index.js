@@ -27,8 +27,7 @@ const Checkout = () => {
 
   const {
     DeliverRegion,
-    merchant_test_public_key,
-    merchant_live_public_key,
+    businessDetails: { live_public_key, test_public_key },
   } = store;
 
   const [flag, setFlag] = useState(false);
@@ -129,7 +128,7 @@ const Checkout = () => {
           // return;
         }
       } else
-        addToast("Invalid Coupon Code", {
+        addToast("Invalid Discount Code", {
           appearance: "error",
           autoDismiss: true,
         });
@@ -148,7 +147,7 @@ const Checkout = () => {
   return (
     <div>
       <Head>
-        <script src="https://stg-checkout.seerbitapi.com/api/v2/seerbit.js" />
+        <script src="https://stg-checkout.seerbitapi.com" />
       </Head>
       <div className="text-txt-fade">
         <h3 className="inner-title capitalize text-txt font-medium pb-1.5  border-txt-lt-fd mb-5">
@@ -251,11 +250,14 @@ const Checkout = () => {
               >
                 Shipping Region{" "}
               </option>
-              {DeliverRegion.map((data) => (
-                <option className="text-sm" value={data.fee}>
-                  {`${data.name} - ${currency} ${data.fee}`}
-                </option>
-              ))}
+              {DeliverRegion.map(
+                (data) =>
+                  data.status === "ACTIVE" && (
+                    <option className="text-sm" value={data.fee}>
+                      {`${data.name} - ${currency} ${data.fee}`}
+                    </option>
+                  )
+              )}
             </select>
             <div className="absolute right-2 top-3">
               <svg
@@ -365,10 +367,21 @@ const Checkout = () => {
                   metaData: JSON.stringify({ store: { values, items: items } }),
                   //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",
                   public_key:
-                    merchant_test_public_key?.length > 0
-                      ? merchant_test_public_key
-                      : merchant_live_public_key, //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",,,
+                    test_public_key?.length > 0
+                      ? test_public_key
+                      : live_public_key, //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",,,
                   callback,
+                  store: true,
+                  customization: {
+                    theme: {
+                      border_color: "#ffffff",
+                      // background_color: "#004C64",
+                      button_color: "#000000",
+                    },
+                    // payment_method: ["card", "transfer"],
+                    // logo: "logo_url || base64",
+                    confetti: false
+                  },
                   // callbackurl: redirectUrl || "",
                 });
               }

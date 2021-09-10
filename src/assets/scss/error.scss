@@ -1,9 +1,9 @@
 .notx-fndx {
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 88px;
+    // flex-direction: column;
+    // align-items: center;
+    // margin-top: 88px;
   
     .loog {
       width: 140px;
@@ -11,8 +11,8 @@
   
     .lo {
       text-align: center;
-      width: 200px;
-      height: 90px;
+      // width: 200px;
+      // height: 90px;
       margin-top: 10px;
       margin-bottom: 30px;
     }
@@ -39,14 +39,14 @@
     }
   
     .err {
-      margin-top: 40px !important;
-      border: 1px solid #ccc;
+      // margin-top: 40px !important;
+      // border: 29px solid #ccc;
       box-shadow: 0px 18px 60px rgba(238, 240, 245, 0.37);
-      border-radius: 8px;
+      // border-radius: 8px;
       background: #ffffff;
-      border: 1px solid #eef0f5;
-      width: 474px;
-      height: 290px;
+      border-bottom: 4px solid #eef0f5;
+      width: 100%;
+      height: 90px;
       display: flex;
       justify-content: center;
       flex-direction: column;
@@ -55,8 +55,12 @@
     .img-err {
       display: flex;
       justify-content: center;
-      flex-direction: column;
+      align-items: center;
+      // flex-direction: column;
       margin: auto;
+      // color:#ff2300;
+      // font-weight: 500;
+    color: #e03a20;
     }
   
     img {

@@ -1,12 +1,18 @@
-import { axiosInstance } from 'helpers';
+import { axiosInstance } from "helpers";
 
-export const getStore = (page) => async (dispatch) => {
-  const store = await axiosInstance.get(
-    `/loadstoredetails/${page}`
-  );
-// console.log(store);
+export const getStore = (storex) => async (dispatch) => {
+  console.log(storex, 'storex')
+  let store;
+  if (typeof storex === "string") {
+    store = await axiosInstance
+      .get(`/loadstoredetails/${storex}`)
+      .catch((e) => "error");
+  } else {
+    store = storex;
+  }
+
   dispatch({
-    type: 'GET_STORE',
-    payload: store.data,
+    type: "GET_STORE",
+    payload: store?.data || store || "err",
   });
-}
+};

@@ -36,7 +36,6 @@ const NavBar = () => {
     dispatch(setOpenPanel(true));
   };
 
-
   const isAdmin =
     user?.role === "admin"
       ? [{ title: "Admin", link: "/admin", types: [] }]
@@ -63,24 +62,7 @@ const NavBar = () => {
       ]
     : [];
 
-  const links = [
-    {
-      title: "Home",
-      link: "/",
-      subCategories: presets?.home || [],
-      containerClassName: "relative h-full",
-    },
-    {
-      title: "Shop",
-      link: "/shop",
-      subCategories: presets?.shop || [],
-      containerClassName: "h-full",
-    },
-    ...isAdmin,
-    { title: "Blog", link: "/blog" },
-  ];
-
-  const lowerLinks = [...partiallinks(user, store, total), ...userAccount] ;
+  const lowerLinks = [...partiallinks(user, store, total), ...userAccount];
 
   const close = useCallback(() => {
     if (checked) {
@@ -154,6 +136,7 @@ const NavBar = () => {
     dispatch(setOpenPanel(false));
   };
 
+  const storeName = store?.storeDetails?.name;
   return (
     <>
       <header className="absolute w-full z-20" ref={navRef}>
@@ -187,14 +170,15 @@ const NavBar = () => {
             </div>
 
             <ul className="nav-contents">
-              <div>
+            <div className="text-black name-2 text-black" style={{color: 'black'}}>
                 {" "}
-                <img
+                {/* <img
                   src={logo}
                   alt=""
                   className="object-contain"
                   style={{ width: "150px" }}
-                />
+                /> */}
+                {storeName?.charAt(0)?.toUpperCase() + storeName?.slice(1)}
               </div>
             </ul>
 
@@ -273,75 +257,75 @@ const NavBar = () => {
       </header>
       <div
         className={`nav-overlay opacity-0 w-full h-full fixed top-0 left-0 ${
-          openPanel ? 'open' : ''
+          openPanel ? "open" : ""
         }`}
         onClick={closePanel}
       />
-        {/* <div className="overlay opacity-0 w-full h-full fixed top-0 left-0" /> */}
+      {/* <div className="overlay opacity-0 w-full h-full fixed top-0 left-0" /> */}
 
-        <div
+      <div
         className={`h-full aside--main pl-16 relative ${
-          openPanel && presentMenu === 'mobile' ? 'open' : ''
+          openPanel && presentMenu === "mobile" ? "open" : ""
         }`}
       >
         <SideMenuMobile closePanel={closePanel} className="h-full" />
       </div>
 
-        {/* {(presentMenu === 'cart' || presentMenu === 'wishlist' || presentMenu === 'checkout') && ( */}
+      {/* {(presentMenu === 'cart' || presentMenu === 'wishlist' || presentMenu === 'checkout') && ( */}
 
-        <div
-          className={`h-full fixed right-0 aside--main transform translate-x-0 w-full overflow-scroll ${
-            presentMenu === "checkout" ? "max-w-lg" : "max-w-md"
-          } p-5 bg-white ${
-            openPanel &&
-            (presentMenu === "cart" ||
-              presentMenu === "wishlist" ||
-              presentMenu === "checkout")
-              ? "open"
-              : ""
-          }`}
-        >
-          <button className="absolute top-5 right-5" onClick={closePanel}>
-            <Close className="inner-close text-2xl fill-current text-txt mx-auto leading-4" />
+      <div
+        className={`h-full fixed right-0 aside--main transform translate-x-0 w-full overflow-scroll ${
+          presentMenu === "checkout" ? "max-w-lg" : "max-w-md"
+        } p-5 bg-white ${
+          openPanel &&
+          (presentMenu === "cart" ||
+            presentMenu === "wishlist" ||
+            presentMenu === "checkout")
+            ? "open"
+            : ""
+        }`}
+      >
+        <button className="absolute top-5 right-5" onClick={closePanel}>
+          <Close className="inner-close text-2xl fill-current text-txt mx-auto leading-4" />
+        </button>
+
+        {presentMenu === "cart" && <CartPanel closePanel={closePanel} />}
+        {presentMenu === "wishlist" && <WishList closePanel={closePanel} />}
+        {presentMenu === "checkout" && <Checkout closePanel={closePanel} />}
+      </div>
+      {/* )} */}
+
+      {presentMenu === "search" && (
+        <div className="h-full fixed right-0 aside--main transform translate-x-full w-full p-5 bg-white">
+          <button
+            className="absolute top-7 right-7"
+            onClick={closePanel}
+            style={{ width: "60px", height: "60px" }}
+          >
+            <Close className="inner-close fill-current text-txt mx-auto leading-4 w-full h-full" />
           </button>
 
-          {presentMenu === "cart" && <CartPanel closePanel={closePanel} />}
-          {presentMenu === "wishlist" && <WishList closePanel={closePanel} />}
-          {presentMenu === "checkout" && <Checkout closePanel={closePanel} />}
-        </div>
-        {/* )} */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <SearchPane>
+              {({ value, handleChange, submit }) => (
+                <form className="mb-5" onSubmit={submit}>
+                  <input
+                    type="search"
+                    placeholder="Search Products..."
+                    className="w-full text-txt"
+                    value={value}
+                    onChange={handleChange}
+                    style={{ fontSize: "67px" }}
+                    className="border-b-2 border-txt"
+                  />
+                </form>
+              )}
+            </SearchPane>
 
-        {presentMenu === "search" && (
-          <div className="h-full fixed right-0 aside--main transform translate-x-full w-full p-5 bg-white">
-            <button
-              className="absolute top-7 right-7"
-              onClick={closePanel}
-              style={{ width: "60px", height: "60px" }}
-            >
-              <Close className="inner-close fill-current text-txt mx-auto leading-4 w-full h-full" />
-            </button>
-
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <SearchPane>
-                {({ value, handleChange, submit }) => (
-                  <form className="mb-5" onSubmit={submit}>
-                    <input
-                      type="search"
-                      placeholder="Search Products..."
-                      className="w-full text-txt"
-                      value={value}
-                      onChange={handleChange}
-                      style={{ fontSize: "67px" }}
-                      className="border-b-2 border-txt"
-                    />
-                  </form>
-                )}
-              </SearchPane>
-
-              <p># Hit enter to search</p>
-            </div>
+            <p># Hit enter to search</p>
           </div>
-        )}
+        </div>
+      )}
       {/* </div> */}
     </>
   );

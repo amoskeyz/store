@@ -1,9 +1,9 @@
 .notx-fndx {
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 88px;
+  // flex-direction: column;
+  // align-items: center;
+  // margin-top: 88px;
 
   .loog {
     width: 140px;
@@ -23,7 +23,7 @@
     // position: absolute;
   }
 
-  .bntt{
+  .bntt {
     height: 50px;
     width: 180px;
     background-color: #000000;
@@ -39,13 +39,14 @@
   }
 
   .err {
-    margin-top: 40px !important;
+    // margin-top: 40px !important;
     border: 1px solid #ccc;
-    box-shadow: 0px 18px 60px rgba(238, 240, 245, 0.37);
+    // box-shadow: 0px 18px 60px rgba(238, 240, 245, 0.37);
     border-radius: 8px;
     background: #ffffff;
-    border: 1px solid #eef0f5;
-    width: 474px;
+    // border: 1px solid #eef0f5;
+    max-width: 474px;
+    width: 100%;
     height: 290px;
     display: flex;
     justify-content: center;

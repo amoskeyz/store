@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import succ from "assets/success.svg";
 import { setMenu, setOpenPanel } from "g_actions/menu";
 import { useSelector, useDispatch } from "react-redux";
 import { removeAllFromCart } from "g_actions/cart";
 import { useToasts } from "react-toast-notifications";
 import { addsign, actualPrice, errorhandler } from "helpers";
+import Button from "../submitbtn";
 // import "./style.scss";
 
 const SuccessPage = ({ success, close }) => {
@@ -16,6 +18,8 @@ const SuccessPage = ({ success, close }) => {
 
   const successMessage = store?.store?.storeDetails?.successResponseMessage;
 
+
+  console.log(store, 'success', store?.store?.storeDetails)
 
   const removeAllItems = async () => {
     try {
@@ -105,6 +109,26 @@ const SuccessPage = ({ success, close }) => {
             </div>
           </div>
         </div> */}
+
+<div className="items-center flex mt-10">
+          {/* <Button
+            className="mr-2.5 w-full "
+            // handleSubmit={submitFunc}
+            text={'Continue shopping'}
+            // loading={load}
+          // loading={addToCartLoading}
+          /> */}
+          <Link href={`/${store?.store?.storeDetails?.name}`}>
+              <a
+                // onClick={(e) => dispatch(setOpenPanel(false))}
+                className="font-medium block p-2.5 mb-4 bg-black text-center text-white"
+                style={{border: "1px solid black"}}
+              >
+                Continue Shopping
+              </a>
+            </Link>
+          
+        </div>
       </div>
     </>
   );
