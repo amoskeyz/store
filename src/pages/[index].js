@@ -61,7 +61,7 @@ const HomePage = (props) => {
         </main>
       )}
       {store.store.status !== "failure" &&
-        (theme === 'themeFarm2' || theme === '1' || theme === 1) && (
+        (theme === 'themeFarm2' || theme === '1' || theme === 1 || !theme) && (
           <main className="home-pagfe">
             <style jsx>{`
               @media screen and (max-width: 400px) {
