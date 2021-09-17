@@ -44,6 +44,9 @@ const Checkout = () => {
     region: "",
     coupon: "",
     discount: "",
+    orderId: Math.floor(
+      Math.pow(15, 12 - 1) + Math.random() * 10 * Math.pow(15, 12 - 1)
+    ),
   });
 
   function formatNumber(num) {
@@ -346,6 +349,7 @@ const Checkout = () => {
           </span>
         </p>
         <div className="mt-8">
+          {console.log({ respBody: { values, order: Object.values(items) } })}
           <a
             className="font-medium block p-2.5 cursor-pointer mb-4 bg-black text-center text-white rounded"
             onClick={() => {
@@ -364,7 +368,9 @@ const Checkout = () => {
                   full_name: `${values.firstName} ${values.lastName}`,
                   email: values.email,
                   mobile_no: values.phoneNumber,
-                  metaData: JSON.stringify({ respBody: { values, order: Object.values(items) } }),
+                  metaData: JSON.stringify({
+                    respBody: { values, order: Object.values(items) },
+                  }),
                   //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",
                   public_key:
                     test_public_key?.length > 0
@@ -380,7 +386,7 @@ const Checkout = () => {
                     },
                     // payment_method: ["card", "transfer"],
                     // logo: "logo_url || base64",
-                    confetti: false
+                    confetti: false,
                   },
                   // callbackurl: redirectUrl || "",
                 });

@@ -137,7 +137,7 @@ function RenderComp({ Component, pageProps }) {
 }
 
 MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
-  console.log(typeof window, err, query, "here");
+  // console.log(typeof window, err, query, "here");
   let products;
   const { index, product } = query;
   if (typeof window === "undefined" && asPath !== "/") {
@@ -146,23 +146,13 @@ MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
         `/loadstoredetails/${index || product[0]}`
       );
       const storeId = store.data?.storeDetails?.storeId;
-      console.log(storeId, store?.data, "id");
 
       if (storeId) {
         products = await axiosInstance.get(
           `/loadstoreproducts/${storeId}?size=100&page=0`
         );
-        console.log(products.data);
       }
 
-      // if (store?.data.storeDetails.status === "INACTIVE") {
-      //   return {
-      //     pageProps: {
-      //       errorCode : '',
-      //     },
-      //   };
-      // } else
-      console.log()
         return {
           pageProps: {
             store: store?.data || "err",
@@ -171,7 +161,6 @@ MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
         };
     } catch (error) {
       if (error.response) {
-        console.log(error.response, "error");
         const errorCode = error?.response?.status;
         return {
           pageProps: {
@@ -179,7 +168,6 @@ MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
           },
         };
       } else {
-        console.log(error, "error");
         const errorCode = error.code;
         return {
           pageProps: {

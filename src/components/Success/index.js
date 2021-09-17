@@ -21,6 +21,8 @@ const SuccessPage = ({ success, close }) => {
 
   console.log(store, 'success', store?.store?.storeDetails)
 
+  console.log(success, 'success')
+
   const removeAllItems = async () => {
     try {
       // setLoading(true);
@@ -82,14 +84,14 @@ const SuccessPage = ({ success, close }) => {
           <img src={succ} />
         </div>
         <p className="orderx">ORDER PROCESSED</p>
-        <div className="xxser mt-4">Order N0. 520439998827</div>
+        <div className="xxser mt-4">Order No. {`${success.orderId}`}</div>
         <div className="mt-2">
           You will be notified when your order has been confirmed
         </div>
 
         <div>
           <div className="flex w-full justify-between mt-10 border-b pb-4 khfx-xxn">
-            <div>SHIPPING ADDRESS</div>
+            <div>SHIPPING ADDRESS:</div>
             <div className="text-right rigx-delx">
               <div className="userx">{`${success?.firstName} ${
                 success?.lastName
