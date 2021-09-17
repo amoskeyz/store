@@ -44,6 +44,7 @@ const Checkout = () => {
     region: "",
     coupon: "",
     discount: "",
+    storeId,
     orderId: Math.floor(
       Math.pow(15, 12 - 1) + Math.random() * 10 * Math.pow(15, 12 - 1)
     ),
