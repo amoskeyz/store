@@ -38,7 +38,7 @@ function RenderComp({ Component, pageProps }) {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  // console.log(pageProps, "--");
+  // console.log(pageProps, "---");
 
   const { index, product } = router.query;
 
