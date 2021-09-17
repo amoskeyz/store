@@ -375,7 +375,7 @@ const Checkout = () => {
                   customization: {
                     theme: {
                       border_color: "#ffffff",
-                      // background_color: "#004C64",
+                      // background_color: "#004C6",
                       button_color: "#000000",
                     },
                     // payment_method: ["card", "transfer"],
