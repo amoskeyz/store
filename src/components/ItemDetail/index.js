@@ -133,9 +133,11 @@ const Itemdetail = ({ item, runOnClose = () => {}, single }) => {
         </div>
       )} */}
 
+      {/* {console.log(item, 'iii')} */}
+
       <p className="mb-6 text-txt-t mt-8">
-        {item?.productDescription ||
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "}
+        {item?.description ||
+          ""}
       </p>
 
       <div className="mb-5">
