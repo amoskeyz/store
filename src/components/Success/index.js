@@ -23,6 +23,10 @@ const SuccessPage = ({ success, close }) => {
 
   console.log(success, 'success')
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const removeAllItems = async () => {
     try {
       // setLoading(true);
