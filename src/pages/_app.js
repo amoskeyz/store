@@ -153,6 +153,8 @@ MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
         );
       }
 
+      // console.log(store, products);
+
         return {
           pageProps: {
             store: store?.data || "err",

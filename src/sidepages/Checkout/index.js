@@ -95,6 +95,7 @@ const Checkout = () => {
     dispatch(saveSuccess({ ...response, isSuccess: true, ...values }));
 
     setTimeout(() => {
+      dispatch(saveSuccess({ ...response, isSuccess: true, ...values }));
       closeModal();
     }, 3000);
   };
