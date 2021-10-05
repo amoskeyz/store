@@ -375,9 +375,9 @@ const Checkout = () => {
                   }),
                   //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",
                   public_key:
-                    test_public_key?.length > 0
-                      ? test_public_key
-                      : live_public_key, //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",,,
+                    live_public_key?.length > 0
+                      ? live_public_key
+                      : test_public_key, //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",,,
                   callback,
                   store: true,
                   customization: {
