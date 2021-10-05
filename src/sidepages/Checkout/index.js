@@ -152,7 +152,7 @@ const Checkout = () => {
   return (
     <div>
       <Head>
-        <script src="https://stg-checkout.seerbitapi.com" />
+        <script src="https://checkout.seerbitapi.com" />
       </Head>
       <div className="text-txt-fade">
         <h3 className="inner-title capitalize text-txt font-medium pb-1.5  border-txt-lt-fd mb-5">
