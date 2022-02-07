@@ -13,7 +13,7 @@ const HomePage = () => {
       </Head>
       <div className="okx-ioi">
         <img src={logo} />
-        <div>Welcome to Seerbit Store</div>
+        <div>Welcome to Seerbit Store...</div>
       </div>
     </>
   );
