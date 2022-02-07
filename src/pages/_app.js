@@ -153,7 +153,7 @@ MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
         );
       }
 
-      // console.log(store, products);
+      console.log(store, products);
 
         return {
           pageProps: {
@@ -162,6 +162,7 @@ MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
           },
         };
     } catch (error) {
+      console.log(error)
       if (error.response) {
         const errorCode = error?.response?.status;
         return {
@@ -170,6 +171,7 @@ MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
           },
         };
       } else {
+
         const errorCode = error.code;
         return {
           pageProps: {

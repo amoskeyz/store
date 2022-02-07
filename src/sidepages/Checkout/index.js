@@ -92,12 +92,14 @@ const Checkout = () => {
   };
 
   const callback = function(response, closeModal) {
-    dispatch(saveSuccess({ ...response, isSuccess: true, ...values }));
-
-    setTimeout(() => {
+    if (response.code === "00") {
       dispatch(saveSuccess({ ...response, isSuccess: true, ...values }));
-      closeModal();
-    }, 3000);
+
+      setTimeout(() => {
+        dispatch(saveSuccess({ ...response, isSuccess: true, ...values }));
+        closeModal();
+      }, 3000);
+    }
   };
 
   const handleDiscount = async (e) => {
@@ -151,9 +153,7 @@ const Checkout = () => {
 
   return (
     <div>
-      <Head>
-        <script src="https://checkout.seerbitapi.com" />
-      </Head>
+      <Head>{/* <script src="http://localhost:3000/api/v2/" /> */}</Head>
       <div className="text-txt-fade">
         <h3 className="inner-title capitalize text-txt font-medium pb-1.5  border-txt-lt-fd mb-5">
           Delivery Information

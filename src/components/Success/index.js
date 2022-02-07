@@ -18,11 +18,6 @@ const SuccessPage = ({ success, close }) => {
 
   const successMessage = store?.store?.storeDetails?.successResponseMessage;
 
-
-  console.log(store, 'success', store?.store?.storeDetails)
-
-  console.log(success, 'success')
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

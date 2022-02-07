@@ -125,7 +125,7 @@ const Product = () => {
               name="description"
               content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             />
-            <script src="https://checkout.seerbitapi.com/api/v2/seerbit.js" />
+            <script src="http://localhost:3000/api/v2/seerbit.js" />
           </Head>
           <a />
 
