@@ -92,7 +92,7 @@ const Checkout = () => {
   };
 
   const callback = function(response, closeModal) {
-    if (response.code === "00") {
+    if (response?.code === "00") {
       dispatch(saveSuccess({ ...response, isSuccess: true, ...values }));
 
       setTimeout(() => {
