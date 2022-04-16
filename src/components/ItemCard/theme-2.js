@@ -15,6 +15,8 @@ import wishListFunc from "hooks/wishlistfunc";
 import Img from "assets/svg/pro.png";
 import Img1 from "assets/svg/pro1.png";
 import ReactStars from "react-rating-stars-component";
+import Image from "next/image";
+import notfound from "../../assets/404.png";
 
 const ProductCard = ({ item, setView, numb }) => {
   const { items: cartItems } = useSelector((state) => state.cart);
@@ -28,7 +30,6 @@ const ProductCard = ({ item, setView, numb }) => {
   const [loadImage, setLoadImage] = useState(true);
 
   const itemIsInCart = !!cartItems[item.productNameCode];
-
 
   const {
     addToWishList,
@@ -60,7 +61,6 @@ const ProductCard = ({ item, setView, numb }) => {
     onClick = () => router.push(`/${index}/${item.productNameCode}`);
   }
 
-
   const msg = !main_quantity
     ? "Out of Stock"
     : itemIsInCart
@@ -71,7 +71,7 @@ const ProductCard = ({ item, setView, numb }) => {
     item?.productImageUrl?.length > 0 ? item.productImageUrl : "";
 
   return (
-    <div class="product-grid__cardf flex flex-row items-center fe justify-between mb-12 px-3.5 w-full ">
+    <div class="product-grid__cardf flex flex-row items-center fe justify-between mb-12 px-3.5 w-full mx-2">
       <Link href={`/${index}/${item.productNameCode}`}>
         <div>
           <style jsx>{`
@@ -81,24 +81,27 @@ const ProductCard = ({ item, setView, numb }) => {
             }
             @media screen and (max-width: 400px) {
               .jkjs {
-                width:100px;
+                width: 100px;
                 height: 100%;
               }
             }
           `}</style>
-          <img
-            className="product-grid__card__imag jkjs cursor-pointer"
-            // style={{ width: "179.54px", height: "254.07px" }}
-            src={imageToUse}
-            alt="product image"
-            onLoad={function() {
-              setLoadImage(false);
-            }}
-            onError={(e) =>
-              (e.target.src =
-                "https://ik.imagekit.io/62eig2lzls/no-content_-5NDR0bIN.png?tr=w-600,h-700")
-            } //`https://ik.imagekit.io/gk81krdud/404Image.jpeg?tr=w-600,h-700`
-          />
+           
+            <Image
+              className="product-grid__card__imag jkjs cursor-pointer"
+              width="179.54px"
+              height="254.07px"
+              src={imageToUse.length > 3 ? imageToUse : notfound}
+              alt="product image"
+              onLoad={function() {
+                setLoadImage(false);
+              }}
+              onError={(e) =>
+                (e.target.src =
+                  "https://ik.imagekit.io/62eig2lzls/no-content_-5NDR0bIN.png?tr=w-600,h-700")
+              } //`https://ik.imagekit.io/gk81krdud/404Image.jpeg?tr=w-600,h-700`
+            />
+          
         </div>
         {/* </a> */}
       </Link>
@@ -115,8 +118,7 @@ const ProductCard = ({ item, setView, numb }) => {
           /> */}
         </div>
         <div className="ddjd">
-          {item?.productDescription ||
-            item?.description}
+          {item?.productDescription || item?.description}
         </div>
         <div className="text-sm my-2 fd">
           {store?.storeDetails?.currency || "NGN"} {item.amount}{" "}

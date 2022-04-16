@@ -59,7 +59,7 @@ const properties = (state = initialState, action) => {
     case "GET_ALL_PRODUCT":
       const prevProducts = state.products || [];
 
-      console.log(prevProducts, 'prev');
+      // console.log(prevProducts, 'prev');
 
       // console.log(action.payload, "actionoporptorptorptorpt");
 

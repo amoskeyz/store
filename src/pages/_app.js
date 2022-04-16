@@ -145,7 +145,7 @@ MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
       const store = await axiosInstance.get(
         `/loadstoredetails/${index || product[0]}`
       );
-      const storeId = store.data?.storeDetails?.storeId;
+      const storeId = store?.data?.storeDetails?.storeId;
 
       if (storeId) {
         products = await axiosInstance.get(
@@ -153,12 +153,12 @@ MyApp.getInitialProps = async ({ ctx: { query, req, res, asPath, err } }) => {
         );
       }
 
-      console.log(store, products);
+      console.log(store, products?.data);
 
         return {
           pageProps: {
             store: store?.data || "err",
-            products: products.data,
+            products: products?.data,
           },
         };
     } catch (error) {

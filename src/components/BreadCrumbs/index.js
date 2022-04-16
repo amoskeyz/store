@@ -18,12 +18,20 @@ const Breadcrumbs = () => {
   useEffect(() => {
     if (router) {
       const linkPath = router.asPath.split("/");
+      // console.log(linkPath.shift());
       linkPath.shift();
+      let newPath =
+        linkPath.length > 2
+          ? [linkPath[0], `${linkPath[1]}/${linkPath[2]}`]
+          : linkPath;
 
-      const pathArray = linkPath.map((path, i) => {
+      const pathArray = newPath.map((path, i) => {
         return {
           breadcrumb: path,
-          href: "/" + linkPath.slice(0, i + 1).join("/"),
+          href:
+            linkPath.length > 2
+              ? ("/" + newPath.slice(0, i + 1)).replace(',',`/`)
+              : "/" + linkPath.slice(0, i + 1).join("/"),
         };
       });
 

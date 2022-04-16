@@ -33,16 +33,19 @@ const Product = () => {
     query: { product },
   } = router;
 
+  // console.log('product:', product);
+
   const store = useSelector((state) => state.store);
 
-  console.log(store, 'store')
+  // console.log(store, 'store')
 
   const success = useSelector((state) => state.success);
 
   const theme = store?.store?.storeDetails?.theme;
 
   const { indexedProducts } = useSelector((state) => state.product);
-  const currentProduct = indexedProducts[product[1]];
+  // console.log(indexedProducts, 'indexedProducts');
+  const currentProduct = indexedProducts[product.length > 2 ? `${product[1]}/${product[2]}`: product[1]];
   const [loadProduct, , fetchProduct] = useFetch(
     dispatch,
     !currentProduct,
@@ -123,7 +126,7 @@ const Product = () => {
             <title>Seerbit Store || {currentProduct?.productName}</title>
             <meta
               name="description"
-              content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+              content=""
             />
             <script src="https://checkout.seerbitapi.com/api/v2/seerbit.js" />
           </Head>

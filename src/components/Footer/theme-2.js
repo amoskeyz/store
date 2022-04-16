@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Footer = ({ color, background }) => {
   const store = useSelector((state) => state.store);
-console.log(store)
+// console.log(store)
 
   const {
     facebookLink,

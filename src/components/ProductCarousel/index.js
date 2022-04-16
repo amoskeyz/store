@@ -7,10 +7,13 @@ import SwiperCore, {
   Pagination,
   Thumbs,
 } from "swiper";
+import Image from "next/image";
+import notFound from "assets/404.png";
 // import { LightgalleryProvider, LightgalleryItem } from 'react-lightgallery';
 
 import img from "assets/bg-img.png";
 import op from "assets/svg/product-one.svg";
+import notfound from "../../assets/404.png";
 
 SwiperCore.use([EffectFade, Navigation, Autoplay, Pagination, Thumbs]);
 
@@ -40,15 +43,15 @@ const index = ({ images, showThumbs = false, effect = "slide" }) => {
         <div className="relative shadowf flex flex-row kl-xxv">
           {/* <LightgalleryProvider> */}
           <div>
-
             {images.map((el, i) => (
               <div>
-
-                <img
-                  // style={{ width: "500px", height: "600px" }}
+                <Image
+                  width="500px"
+                  height="600px"
                   alt=""
-                  className="object-cover w-full h-full nm"
-                  src={`${el}?tr=w-520,h-750`}
+                  className="cover w-full h-full nm"
+                  src={el.length > 3 ? el : notfound}
+                  // layout="fill"
                   onError={(e) =>
                     (e.target.src =
                       "https://ik.imagekit.io/62eig2lzls/no-content_-5NDR0bIN.png?tr=w-600,h-600")
@@ -58,37 +61,37 @@ const index = ({ images, showThumbs = false, effect = "slide" }) => {
             ))}
           </div>
 
-          {showThumbs && (
+          {/* {showThumbs && (
             <div className="mt-0 ml-4">
               <div>
-                {/* <Swiper
-            // effect="slide"
-            // id="thumbs"
-            // onSwiper={setThumbSwiper}
-            // spaceBetween={5}
-            // slidesPerView={5}
-          > */}
-                {/* {images.map((el) => (
-                  <div>
-                    <SwiperSlide key={`carousel_el_${el}_sub`}>
-                    <div className="h-auto w-full relative shadow">
-                      <img
-                        alt=""
-                        style={{ width: "130px", height: "190px" }}
-                        className="object-cover w-full h-full"
-                        src={`${el}`} //{`https://ik.imagekit.io/gk81krdud/${el}?tr=w-300,h-400`}
-                        onError={(e) =>
-                          (e.target.src = `https://ik.imagekit.io/gk81krdud/404Image.jpeg?tr=w-600,h-800`)
-                        }
-                      />
+                <Swiper
+                // effect="slide"
+                // id="thumbs"
+                // onSwiper={setThumbSwiper}
+                // spaceBetween={5}
+                // slidesPerView={5}
+                >
+                  {images.map((el) => (
+                    <div>
+                      <SwiperSlide key={`carousel_el_${el}_sub`}>
+                        <div className="h-auto w-full relative shadow">
+                          <Image
+                            width="130px"
+                            height="190px"
+                            className="object-cover w-full h-full"
+                            src={`${el}`} //{`https://ik.imagekit.io/gk81krdud/${el}?tr=w-300,h-400`}
+                            onError={(e) =>
+                              (e.target.src = `https://ik.imagekit.io/gk81krdud/404Image.jpeg?tr=w-600,h-800`)
+                            }
+                          />
+                        </div>
+                      </SwiperSlide>
                     </div>
-                  </div>
-                   </SwiperSlide>
-                ))} */}
+                  ))}
+                </Swiper>
               </div>
-              {/* </Swiper> */}
             </div>
-          )}
+          )} */}
         </div>
 
         {/* {showThumbs && (

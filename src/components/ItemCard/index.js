@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
@@ -12,6 +12,8 @@ import op from "../../assets/svg/product-one.svg";
 import opp from "../../assets/svg/cart.svg";
 import oppp from "../../assets/svg/heart.svg";
 import wishListFunc from "hooks/wishlistfunc";
+import Image from "next/image";
+import notfound from "../../assets/404.png";
 
 const ProductCard = ({ item, setView }) => {
   const { items: cartItems } = useSelector((state) => state.cart);
@@ -21,7 +23,7 @@ const ProductCard = ({ item, setView }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const [loadImage, setLoadImage] = useState(true)
+  const [loadImage, setLoadImage] = useState(true);
 
   const itemIsInCart = !!cartItems[item.productNameCode];
   const itemIsInWishList = !!wishlistItems[item.id];
@@ -47,8 +49,6 @@ const ProductCard = ({ item, setView }) => {
 
   let onClick;
 
-
-
   if (itemIsInCart) {
     onClick = (type) => {
       dispatch(setMenu(type));
@@ -58,7 +58,6 @@ const ProductCard = ({ item, setView }) => {
     onClick = () => router.push(`/${index}/${item.productNameCode}`);
   }
 
-
   const msg = !main_quantity
     ? "Out of Stock"
     : itemIsInCart
@@ -67,20 +66,25 @@ const ProductCard = ({ item, setView }) => {
 
   // if item is in cart we say remove from cart
 
-  const imageToUse = item?.productImageUrl?.length > 0 ? item.productImageUrl : "";
+  const imageToUse =
+    item?.productImageUrl?.length > 0 ? item.productImageUrl : "";
 
   return (
     // <div className="product-card title--con mb-12 px-3.5 w-full lg:max-w-1/4 md:max-w-1/2">
     // <div classNname='product-grid'>
     // <Link href={`/shop/product/${item.id}`}>
-    <div class="product-grid__card">
+    <div class="product-grid__card px-3">
       <Link href={`/${index}/${item.productNameCode}`}>
         {/* <a href="#0"> */}
-        <img
-          class="product-grid__card__image cursor-pointer"
-          src={imageToUse}
+        <Image
+          className="product-grid__card__image cursor-pointer"
+          width="502px"
+          height="723px"
+          src={imageToUse.length > 3 ? imageToUse : notfound}
           alt="product image"
-          onLoad= {function (){setLoadImage(false)}}
+          onLoad={function() {
+            setLoadImage(false);
+          }}
           onError={(e) =>
             (e.target.src = `https://ik.imagekit.io/62eig2lzls/no-content_-5NDR0bIN.png?tr=w-600,h-600`)
           }
@@ -96,7 +100,7 @@ const ProductCard = ({ item, setView }) => {
         </p>
       </div>
       <div class="product-grid__card__icons">
-        <button aria-label="Add to cart" onClick={() => onClick('cart')}>
+        <button aria-label="Add to cart" onClick={() => onClick("cart")}>
           <img src={opp} alt="Add to cart" />
         </button>
         {/* <button aria-label="Add to wishlist">
