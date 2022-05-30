@@ -5,7 +5,6 @@ import Cookies from "js-cookie";
 let shortText = /[^\n]{2,}/;
 let number = /^[0-9]{1,}$/;
 
-
 export const validate = (field, Regex) => {
   if (patterns[Regex].test(field)) return true;
   return false;
@@ -21,19 +20,21 @@ export const get_rand = (array) => {
   return array;
 };
 
-const baseurl = "https://seerbitapi.com";
+console.log(process.env?.NEXT_PUBLIC_ENVIRONMENT)
+
+const baseurl =
+  process.env?.NEXT_PUBLIC_ENVIRONMENT === "STAGING"
+    ? "https://stg-backend.cgseerapps.com"
+    : "https://seerbitapi.com";
 // const baseurl = "https://stg-backend.cgseerapps.com"
 
 export const axiosInstance = axios.create({
   baseURL: `${baseurl}/checkout/middleware/merchants/api/v1/store/checkout`,
   // withCredentials: true,
   headers: {
-
     Authorization: `Bearer 68826aea9005de7812429b7983838b06e2c7fffbb3d9487f33bc51c943a3a499`,
   },
 });
-
-
 
 export const toBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -42,7 +43,6 @@ export const toBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
-
 
 if (numeral.locale() !== "na") {
   numeral.register("locale", "na", {
@@ -78,7 +78,6 @@ export const addsign = (value) => {
       : numeral(value).format("0,00");
   } else return numeral(value).format("0.00a");
 };
-
 
 export const errorhandler = (toast, err) => {
   let msg;

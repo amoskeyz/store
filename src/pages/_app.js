@@ -40,6 +40,8 @@ function RenderComp({ Component, pageProps }) {
 
   // console.log(pageProps, "---");
 
+  console.log(process.env?.NEXT_PUBLIC_ENVIRONMENT)
+
   const { index, product } = router.query;
 
   useEffect(() => {
