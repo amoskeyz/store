@@ -25,7 +25,7 @@ const baseurl = "https://seerbitapi.com";
 // const baseurl = "https://stg-backend.cgseerapps.com"
 
 export const axiosInstance = axios.create({
-  baseURL: `${baseurl}/checkout/middleware/merchants/api/v1/store/checkout`,
+  baseURL: `${baseurl}/checkout/middleware/merchants/store/api/v1/store/checkout`,
   // withCredentials: true,
   headers: {
 

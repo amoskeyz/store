@@ -128,7 +128,7 @@ const Product = () => {
               name="description"
               content=""
             />
-            <script src="https://checkout.seerbitapi.com/api/v2/seerbit.js" />
+            <script src="https://stg-checkout.seerbitapi.com/api/v2/seerbit.js" />
           </Head>
           <a />
 
