@@ -5,11 +5,12 @@
   "scripts": {
     "next-dev": "cross-env-shell NODE_ENV=development && set DEBUG=dev && babel-node server/server.js",
     "next-build": "next build",
-    "dev": "next dev -p 5000",
+    "build": "next build",
+    "dev": "next dev -p 4000",
     "lint:fix": "eslint --fix --ext .js,.jsx .",
     "test": "jest --detectOpenHandles --verbose --coverage --forceExit",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "start": "node server.js",
+    "start": "next start",
     "start-static": "node server-static.js",
     "next-start": "next start",
     "export": "next export"

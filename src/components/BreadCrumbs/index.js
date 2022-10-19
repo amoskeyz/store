@@ -30,7 +30,7 @@ const Breadcrumbs = () => {
           breadcrumb: path,
           href:
             linkPath.length > 2
-              ? ("/" + newPath.slice(0, i + 1)).replace(',',`/`)
+              ? ("/" + newPath.slice(0, i + 1)).replace(",", `/`)
               : "/" + linkPath.slice(0, i + 1).join("/"),
         };
       });
@@ -47,17 +47,19 @@ const Breadcrumbs = () => {
     <nav aria-label="breadcrumbs">
       <ol className="breadcrumb mt-6">
         <div className="px-2">
-          <li>
+          {/* <li>
             <Link href="/">
               <a>Home</a>
             </Link>
-          </li>
+          </li> */}
           {breadcrumbs.map((breadcrumb, i) => {
             return (
               <li key={breadcrumb.href} key={`breadcrumbs_${i}`}>
                 <Link href={breadcrumb.href}>
                   <a className="capitalize">
-                    {convertBreadcrumb(breadcrumb.breadcrumb)}
+                    {i === 0
+                      ? "Home"
+                      : convertBreadcrumb(breadcrumb.breadcrumb)}
                   </a>
                 </Link>
               </li>

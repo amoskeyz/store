@@ -29,7 +29,7 @@ const baseurl =
 // const baseurl = "https://stg-backend.cgseerapps.com"
 
 export const axiosInstance = axios.create({
-  baseURL: `${baseurl}/checkout/middleware/merchants/api/v1/store/checkout`,
+  baseURL: `${baseurl}/checkout/middleware/merchants/store/api/v1/store/checkout`,
   // withCredentials: true,
   headers: {
     Authorization: `Bearer 68826aea9005de7812429b7983838b06e2c7fffbb3d9487f33bc51c943a3a499`,

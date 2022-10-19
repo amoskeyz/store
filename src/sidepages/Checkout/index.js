@@ -174,7 +174,6 @@ const Checkout = () => {
                 } h-11 w-full appearance-none block w-full border ${
                   flag && values[data.name].length <= 0 ? "border-red-400" : ""
                 } rounded py-3 px-4 focus:outline-none focus:bg-white focus:border-gray-500`}
-                type="text"
                 name={data.name}
                 placeholder={data.placeholder}
                 onChange={handleChange}
@@ -195,7 +194,6 @@ const Checkout = () => {
               className={`cdx  h-11 w-full appearance-none block w-full border ${
                 flag && values[data.name].length <= 0 ? "border-red-400" : ""
               } rounded py-3 px-4 focus:outline-none focus:bg-white focus:border-gray-500`}
-              type="text"
               name={data.name}
               placeholder={data.placeholder}
               onChange={handleChange}
@@ -219,7 +217,6 @@ const Checkout = () => {
               className={`cdx  h-11 w-full appearance-none block w-full border ${
                 flag && values[data.name].length <= 0 ? "border-red-400" : ""
               } rounded py-3 px-4 focus:outline-none focus:bg-white focus:border-gray-500`}
-              type="text"
               name={data.name}
               placeholder={data.placeholder}
               onChange={handleChange}
@@ -294,7 +291,6 @@ const Checkout = () => {
           <input
             type="text"
             className="cdx h-11 w-full appearance-none block w-full  border rounded py-3 px-4 mb-3  focus:outline-none focus:bg-white focus:border-gray-500"
-            type="text"
             placeholder="Discount code"
             name="coupon"
             onChange={handleChange}
@@ -351,7 +347,7 @@ const Checkout = () => {
           </span>
         </p>
         <div className="mt-8">
-          {console.log({ respBody: { values, order: Object.values(items) } })}
+          {/* {console.log({ respBody: { values, order: Object.values(items) } })} */}
           <a
             className="font-medium block p-2.5 cursor-pointer mb-4 bg-black text-center text-white rounded"
             onClick={() => {
@@ -374,10 +370,10 @@ const Checkout = () => {
                     respBody: { values, order: Object.values(items) },
                   }),
                   //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",
-                  public_key:
-                    live_public_key?.length > 0
-                      ? live_public_key
-                      : test_public_key, //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",,,
+                  public_key: "SBTESTPUBK_t4G16GCA1O51AV0Va3PPretaisXubSw1",
+                    // live_public_key?.length > 0
+                    //   ? live_public_key
+                    //   : test_public_key, //"SBTESTPUBK_p8GqvFSFNCBahSJinczKd9aIPoRUZfda",,,
                   callback,
                   store: true,
                   customization: {
