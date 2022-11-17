@@ -20,12 +20,13 @@ export const get_rand = (array) => {
   return array;
 };
 
-console.log(process.env?.NEXT_PUBLIC_ENVIRONMENT)
+// console.log(process.env?.NEXT_PUBLIC_ENVIRONMENT)
 
 const baseurl =
-  process.env?.NEXT_PUBLIC_ENVIRONMENT === "STAGING"
-    ? "https://stg-backend.cgseerapps.com"
-    : "https://seerbitapi.com";
+  // process.env?.NEXT_PUBLIC_ENVIRONMENT !== "STAGING"
+  //   ? "https://stg-backend.cgseerapps.com"
+  //   :
+  "https://seerbitapi.com";
 // const baseurl = "https://stg-backend.cgseerapps.com"
 
 export const axiosInstance = axios.create({
@@ -92,5 +93,5 @@ export const errorhandler = (toast, err) => {
   });
 };
 
-export const actualPrice = (price, discount) =>
-  Number(discount) ? price - (price * discount) / 100 : price;
+export const actualPrice = (price, discount) => 100;
+// Number(discount) ? price - (price * discount) / 100 : price;

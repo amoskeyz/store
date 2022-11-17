@@ -33,18 +33,18 @@ const Product = () => {
     query: { product },
   } = router;
 
-  // console.log('product:', product);
+  console.log('product:', product);
 
   const store = useSelector((state) => state.store);
 
-  // console.log(store, 'store')
+  console.log(store, 'store')
 
   const success = useSelector((state) => state.success);
 
   const theme = store?.store?.storeDetails?.theme;
 
   const { indexedProducts } = useSelector((state) => state.product);
-  // console.log(indexedProducts, 'indexedProducts');
+  console.log(indexedProducts, 'indexedProducts');
   const currentProduct = indexedProducts[product.length > 2 ? `${product[1]}/${product[2]}`: product[1]];
   const [loadProduct, , fetchProduct] = useFetch(
     dispatch,
